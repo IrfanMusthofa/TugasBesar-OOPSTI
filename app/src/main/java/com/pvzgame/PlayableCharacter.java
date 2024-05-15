@@ -36,6 +36,6 @@ public abstract class PlayableCharacter {
         return currentCol; 
     }
 
-    // public abstract void dead();
+    public abstract void dead();
 }
 
