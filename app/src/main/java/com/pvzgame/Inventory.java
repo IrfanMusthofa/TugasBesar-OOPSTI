@@ -3,6 +3,8 @@ package com.pvzgame;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.pvzgame.Zombie.Zombie;
+
 public class Inventory {
     private final List<Plant> kumpulanPlant;
     private final List<Zombie> kumpulanZombie;
