@@ -1,11 +1,14 @@
 package com.pvzgame;
+import java.lang.System.out;
+
+import com.pvzgame.Zombie.Zombie;
 
 public class Map {
     // Attributes
     private Tile[][] tiles;
     private final int rows = 6;
     private final int cols = 11;
-
+    
     // Constructor
     public Map() {
         tiles = new Tile[rows][cols];
@@ -37,5 +40,31 @@ public class Map {
     public int getCols() {
         return cols;
     }
+    
+    public void printMap(){
+        for (int i =0;i<rows;i++){
+            System.out.printf("///");
+            for(int j=1;j<cols-1;j++){
+                
+                if(tiles[i][j].getPlant()!=null){
+                    System.out.printf("[%s]",getPlant().getName());
+                }
+                else if(tiles[i][j].getZombies()!=null){
+                    System.out.printf("[");
+                    for(Zombie cekZombie :zombies){
+                        System.out.printf("(%s)",cekZombie.getName());
+                    }
+                    System.out.printf("]");
+                }
+                else {
+                    System.out.printf("kosong");
+                }
+
+                Sytem.out.printf("||");
+            }
+            System.out.printf("...\n");
+        }
+    }
+
     
 }

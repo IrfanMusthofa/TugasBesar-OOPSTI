@@ -1,23 +1,22 @@
 package com.pvzgame.Plant;
+import com.pvzgame.Zombie;
 
 public class Peashooter extends Plant {
     @Override
     public void createPlant(int currentCol, int timeCreated) {
-        settimeCreated(timeCreated);
-        setcurrentCol(currentCol);
-        sethealth(100);
-        setcooldown(10);
-        setattackDamage(25);
-        setattackSpeed(4);
-        setrange(-1);
-        setname("Peashooter");
-        setisWaterType(false);
-        setsunCost(100);
+        setTimeCreated(timeCreated);
+        setCurrentCol(currentCol);
+        setHealth(100);
+        setCooldown(10);
+        setAttackDamage(25);
+        setAttackSpeed(4);
+        setRange(-1);
+        setName("Peashooter");
+        setIsWaterType(false);
+        setSunCost(100);
     }
-    public void attack(){
-        if(true){ //kondisi nyerang
-
-        }
+    public void attack(Zombie zombie){
+        zombie.attacked(this.getAttackDamage());
     }
 
 }

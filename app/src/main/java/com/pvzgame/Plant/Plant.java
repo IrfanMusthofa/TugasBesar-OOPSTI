@@ -15,71 +15,71 @@ abstract public class Plant {
 
     abstract void createPlant(int curentCol, int timeCreated);
 
-    public boolean getisWaterType(){
+    public boolean getIsWaterType(){
         return isWaterType;
     }
-    public void setisWaterType(Boolean currentStatus){
+    public void setIsWaterType(Boolean currentStatus){
         isWaterType =currentStatus;
     }
-    public String getname(){
+    public String getName(){
         return name;
     }
 
-    public void setname(String name){
+    public void setName(String name){
         this.name =name;
     }
 
-    public int getsunCost(){
+    public int getSunCost(){
         return sunCost;
     }
 
-    public void setsunCost(int sunCost){
+    public void setSunCost(int sunCost){
         this.sunCost =sunCost;
     }
-    public int getrange(){
+    public int getRange(){
         return range;
     }
 
-    public void setrange(int range){
+    public void setRange(int range){
         this.range = range;
     }
-    public int getcooldown(){
+    public int getCooldown(){
         return cooldown;
     }
 
-    public void setcooldown(int cooldown){
+    public void setCooldown(int cooldown){
         this.cooldown = cooldown;
     }
 
 
-    public int gethealth(){
+    public int getHealth(){
         return health;
     }
-    public int getattackDamage(){
+    public int getAttackDamage(){
         return attackDamage;
     }
-    public void setattackDamage(int attackDamage){
+    public void setAttackDamage(int attackDamage){
         this.attackDamage =attackDamage;
     }
 
-    public int getattackSpeed(){
+    public int getAttackSpeed(){
         return attackSpeed;
     }
 
-    public void setattackSpeed(int attackSpeed){
+    public void setAttackSpeed(int attackSpeed){
         this.attackSpeed = attackSpeed;
     }
-    public int gettimeCreated(){
+    public int getTimeCreated(){
         return timeCreated;
     }
 
-    public void settimeCreated(int timeCreated){
+    public void setTimeCreated(int timeCreated){
         this.timeCreated =timeCreated;
     }
-    public int getcurrentCol(){
+    public int getCurrentCol(){
         return currentCol;
     }
-    public void setcurrentCol(int currentCol){
+    public void setCurrentCol(int currentCol){
         this.currentCol =currentCol;
     }
     
@@ -87,12 +87,12 @@ abstract public class Plant {
     public void attacked(int damage){
         health -= damage;
         if (health <=0){
-            //panggil dead//
+            //panggil dead tile remove//
         }
     }
     
     
-    public void sethealth(int health){
+    public void setHealth(int health){
         this.health = health;
     }
 }

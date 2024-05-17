@@ -1,17 +1,21 @@
 package com.pvzgame.Plant;
+import com.pvzgame.Zombie;
 
 public class Snowpea extends Plant{
     public void createPlant(int currentCol, int timeCreated) {
-        settimeCreated(timeCreated);
-        setcurrentCol(currentCol);
-        setsunCost(175);
-        sethealth(100);
-        setcooldown(10);
-        setattackDamage(25);
-        setattackSpeed(4);
-        setrange(-1);
-        setisWaterType(false);
-        setname("Snowpea");
-        
+        setTimeCreated(timeCreated);
+        setCurrentCol(currentCol);
+        setSunCost(175);
+        setHealth(100);
+        setCooldown(10);
+        setAttackDamage(25);
+        setAtackSpeed(4);
+        setRange(-1);
+        setIsWaterType(false);
+        setName("Snowpea");
+    }
+    public void attack(Zombie zombie){
+        zombie.attacked(this.getAttackDamage());
+        zombie.SlowZombie();
     }
 }
