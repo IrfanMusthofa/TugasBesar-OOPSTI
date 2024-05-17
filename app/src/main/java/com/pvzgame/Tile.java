@@ -3,6 +3,7 @@ package com.pvzgame;
 // Import
 import com.pvzgame.Zombie.Zombie;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Tile {
 
@@ -14,12 +15,16 @@ public class Tile {
     private List<Zombie> zombies;
 
     // Constructor
-    public Tile(Boolean isProtectedArea, Boolean isSpawnArea, Boolean water, Plant plant, List<Zombie> zombies) {
+    public Tile(Boolean isProtectedArea, Boolean isSpawnArea, Boolean water) { 
+
+        // Initial state:
+        // Plant = null
+        // Zombies = []
         this.isProtectedArea = isProtectedArea;
         this.isSpawnArea = isSpawnArea;
         this.water = water;
-        this.plant = plant;
-        this.zombies = zombies;
+        this.plant = null;
+        this.zombies = new CopyOnWriteArrayList<>();
     }
 
     // Getter
@@ -48,48 +53,33 @@ public class Tile {
         this.plant = plant;
     }
 
-    public void setZombies(List<Zombie> zombies) {
-        this.zombies = zombies;
-    }
-
     public void addZombie(Zombie zombie) {
-        this.zombies.add(zombie);
+        zombies.add(zombie);
     }
 
     public void removeZombie(Zombie zombie) {
-        this.zombies.remove(zombie);
+        zombies.remove(zombie);
     }
-
-    public void removePlant() {
-        this.plant = null;
-    }
-
-    public void removeZombies() {
-        this.zombies.clear();
-    }
-
-    public void changeProtectedAreaStatus() {
-        isProtectedArea = !isProtectedArea;
-    }
-
-
-    public void changeSpawnAreaStatus() {
-        isSpawnArea = !isSpawnArea;
-    }
-
-    public void changeWaterStatus() {
-        water = !water;
-    }
-
-    public void changePlantStatus() {
-        plant = null;
-    }
-
 
     public void removeAllZombies() {
         zombies.clear();
     }
 
+    public void removePlant() {
+        plant = null;
+    }
+
+    public void changeProtectedAreaStatus(Boolean bool) {
+        isProtectedArea = bool;
+    }
+
+    public void changeSpawnAreaStatus(Boolean bool) {
+        isSpawnArea = bool;
+    }
+
+    public void changeWaterStatus(Boolean bool) {
+        water = bool;
+    }
 }
 
 
