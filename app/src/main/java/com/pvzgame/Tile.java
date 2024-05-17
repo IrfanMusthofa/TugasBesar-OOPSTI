@@ -2,6 +2,7 @@ package com.pvzgame;
 
 // Import
 import com.pvzgame.Zombie.Zombie;
+import com.pvzgame.Plant.Plant;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
