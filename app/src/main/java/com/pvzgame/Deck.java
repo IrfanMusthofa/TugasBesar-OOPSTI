@@ -1,5 +1,7 @@
 package com.pvzgame;
 
+import com.pvzgame.Plant.Plant;
+
 public class Deck {
     private List<Plant> kumpulanPlant;
     private Integer availableSlot;

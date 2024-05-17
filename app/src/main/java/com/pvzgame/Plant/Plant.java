@@ -1,4 +1,4 @@
-package com.pvzgame;
+package com.pvzgame.Plant;
 
 abstract public class Plant {
     private boolean isWaterType;
@@ -13,7 +13,7 @@ abstract public class Plant {
     private int timeCreated;
     private int currentCol;
 
-    abstract public void createPlant();
+    abstract void createPlant(int curentCol, int timeCreated);
 
     public boolean getisWaterType(){
         return isWaterType;
