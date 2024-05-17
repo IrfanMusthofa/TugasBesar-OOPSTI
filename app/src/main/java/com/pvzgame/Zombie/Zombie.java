@@ -1,14 +1,15 @@
-package com.pvzgame;
+package com.pvzgame.Zombie;
+
+import com.pvzgame.PlayableCharacter;
 
 public abstract class Zombie extends PlayableCharacter{
-    private int zombieType;
-    private String zombieName;
-    private int moveSpeed;
-    private boolean isSlowed;
-    private boolean isHidden;
-    private boolean waterBased;
-    private boolean hasTool;
-    private int currentTime;
+    public int zombieType;
+    public String zombieName;
+    public int moveSpeed;
+    public boolean isSlowed;
+    public boolean isHidden;
+    public boolean waterBased;
+    public boolean hasTool;
     
     public Zombie(String name, int health, int attackDamage, int attackSpeed, int timeCreated, int currentCol, int zombieType, String zombieName, int moveSpeed, boolean isSlowed, boolean isHidden, boolean waterBased, boolean hasTool) {
         this.name = name;
@@ -26,6 +27,36 @@ public abstract class Zombie extends PlayableCharacter{
         this.hasTool = hasTool;
     }
 
+    // Getter
+    public int getZombieType() {
+        return zombieType;
+    }
+
+    public String getZombieName() {
+        return zombieName;
+    }
+
+    public int getMoveSpeed() {
+        return moveSpeed;
+    }
+
+    public boolean isSlowed() {
+        return isSlowed;
+    }
+
+    public boolean isHidden() {
+        return isHidden;
+    }
+
+    public boolean isWaterBased() {
+        return waterBased;
+    }
+
+    public boolean hasTool() {
+        return hasTool;
+    }
+
+    // Setter
     public void attacked(int damage) {
         health -= damage;
     }   
@@ -34,8 +65,13 @@ public abstract class Zombie extends PlayableCharacter{
         isHidden = !isHidden;
     }
 
-    public void changeSlowedStatus() {
+    public void SlowZombie() {
+        this.moveSpeed = moveSpeed / 2;
         isSlowed = true;
+    }
+
+    public void UnslowZombie() {
+        isSlowed = false;
     }
 
     public void destroyTool() {
@@ -49,4 +85,6 @@ public abstract class Zombie extends PlayableCharacter{
             // panggil fungsi attacked dari plant
         }
     }
+
+    public void dead(){}
 }
