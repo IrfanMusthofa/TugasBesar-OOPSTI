@@ -1,17 +1,18 @@
 package com.pvzgame.Plant;
 
 
-public class Wallnut extends Plant{
-    public void createPlant(int currentCol, int timeCreated) {
-        setTimeCreated(timeCreated);
-        setCurrentCol(currentCol);
-        setHealth(1000);
-        setCooldown(20);
-        setAttackDamage(0);
-        setAttackSpeed(0);
-        setRange(0);
-        setName("Wallnut");
+public class Wallnut extends Plant {
+
+    // Constructor
+    public Wallnut(int birthTime) {
+        setBirthTime(birthTime);
+        setPlantName("Wallnut");
         setIsWaterType(false);
         setSunCost(50);
+        setPlantHealth(1000);
+        setPlantCooldown(20);
+        setPlantAttackRange(0);
+        setPlantAttackDamage(0);
+        setPlantAttackSpeed(0);
     }
 }

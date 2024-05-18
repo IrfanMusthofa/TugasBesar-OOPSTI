@@ -1,6 +1,4 @@
 package com.pvzgame;
-import java.lang.System.out;
-
 import com.pvzgame.Zombie.Zombie;
 
 public class Map {
@@ -41,30 +39,30 @@ public class Map {
         return cols;
     }
     
-    public void printMap(){
-        for (int i =0;i<rows;i++){
-            System.out.printf("///");
-            for(int j=1;j<cols-1;j++){
+    // public void printMap(){
+    //     for (int i =0;i<rows;i++){
+    //         System.out.printf("///");
+    //         for(int j=1;j<cols-1;j++){
                 
-                if(tiles[i][j].getPlant()!=null){
-                    System.out.printf("[%s]",getPlant().getName());
-                }
-                else if(tiles[i][j].getZombies()!=null){
-                    System.out.printf("[");
-                    for(Zombie cekZombie :zombies){
-                        System.out.printf("(%s)",cekZombie.getName());
-                    }
-                    System.out.printf("]");
-                }
-                else {
-                    System.out.printf("kosong");
-                }
+    //             if(tiles[i][j].getPlant()!=null){
+    //                 System.out.printf("[%s]",getPlant().getName());
+    //             }
+    //             else if(tiles[i][j].getZombies()!=null){
+    //                 System.out.printf("[");
+    //                 for(Zombie cekZombie : zombies){
+    //                     System.out.printf("(%s)",cekZombie.getName());
+    //                 }
+    //                 System.out.printf("]");
+    //             }
+    //             else {
+    //                 System.out.printf("kosong");
+    //             }
 
-                Sytem.out.printf("||");
-            }
-            System.out.printf("...\n");
-        }
-    }
+    //             System.out.printf("||");
+    //         }
+    //         System.out.printf("...\n");
+    //     }
+    // }
 
     
 }

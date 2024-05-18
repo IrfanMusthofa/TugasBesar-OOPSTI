@@ -2,11 +2,14 @@
 package com.pvzgame;
 
 public class Main {
-    public String getGreeting() {
-        return "Hello World!";
-    }
+    
+    // Attributes
+    public static int gameTime = 0;
+    public static Boolean gameRunning = false;
 
     public static void main(String[] args) {
-        System.out.println(new Main().getGreeting());
+        
+        
+
     }
 }
