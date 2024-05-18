@@ -1,7 +1,5 @@
 package com.pvzgame.Plant;
 
-import com.pvzgame.Zombie.Zombie;
-
 public class Repeater extends Plant {
     
     // Constructor
