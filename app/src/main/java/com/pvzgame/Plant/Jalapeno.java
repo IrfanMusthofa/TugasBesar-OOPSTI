@@ -8,7 +8,7 @@ public class Jalapeno extends Plant {
     public Jalapeno(int birthTime) {
         setBirthTime(birthTime);
         setPlantName("Jalapeno");
-        setIsWaterType(true);
+        setIsWaterType(false);
         setSunCost(125);
         setPlantHealth(100);
         setPlantCooldown(10);

@@ -13,7 +13,7 @@ public class PotatoMine extends Plant {
     public PotatoMine(int birthTime) {
         setBirthTime(birthTime);
         setPlantName("PotatoMine");
-        setIsWaterType(true);
+        setIsWaterType(false);
         setSunCost(50);
         setPlantHealth(100);
         setPlantCooldown(10);
