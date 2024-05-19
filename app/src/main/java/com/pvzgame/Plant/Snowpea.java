@@ -14,8 +14,6 @@ public class Snowpea extends Plant {
         setPlantAttackDamage(25);
         setPlantAttackSpeed(4);
     }
-    public void attack(Zombie zombie){
-        zombie.attacked(this.getAttackDamage());
-        zombie.SlowZombie();
-    }
+
+ 
 }

@@ -14,7 +14,5 @@ public class Repeater extends Plant {
         setPlantAttackDamage(50);
         setPlantAttackSpeed(4);
     }
-    public void attack(Zombie zombie){
-        zombie.attacked(this.getAttackDamage());
-    }
+   
 }

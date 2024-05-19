@@ -15,7 +15,5 @@ public class Peashooter extends Plant {
         setPlantAttackSpeed(4);
     }
     
-    public void attack(Zombie zombie){
-        zombie.attacked(this.getAttackDamage());
-    }
+  
 }
