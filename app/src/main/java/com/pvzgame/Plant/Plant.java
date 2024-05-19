@@ -13,7 +13,7 @@ abstract public class Plant {
     private int timeCreated;
     private int currentCol;
 
-    abstract void createPlant(int curentCol, int timeCreated);
+    
 
     public boolean getIsWaterType(){
         return isWaterType;
