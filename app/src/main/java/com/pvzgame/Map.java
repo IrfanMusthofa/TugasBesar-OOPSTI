@@ -55,17 +55,32 @@ public class Map {
 
     public void printMap() {
         for (int i = 0; i < rows; i++) {
-            for (int j = 1; j < cols - 1 ; j++) {
+            for (int j = 0; j < cols; j++) {
                 synchronized(tiles[i][j]) {
                     System.out.print("["); // Opening bracket
-                    
-                    // Water or Land
-                    if (tiles[i][j].getWater()) System.out.print("W|"); // Water
-                    else System.out.print("L|"); // Land
-                    
-                    if (tiles[i][j].getPlant() != null) {
-                        System.out.print("P." + tiles[i][j].getPlant().getPlantType() + "|");
+
+                    // Protected Area
+                    if (tiles[i][j].getIsProtectedArea()) {
+                        System.out.print("*P");
                     }
+
+                    // Spawn Area
+                    if (tiles[i][j].getIsSpawnArea()) {
+                        System.out.print("*S");
+                    }
+
+                    if (!tiles[i][j].getIsProtectedArea() && !tiles[i][j].getIsSpawnArea()) {
+
+                        // Water or Land
+                        if (tiles[i][j].getWater()) System.out.print("W| "); // Water
+                        else System.out.print("L| "); // Land
+                        
+                        // Plant
+                        if (tiles[i][j].getPlant() != null) {
+                            System.out.print("P." + tiles[i][j].getPlant().getPlantType() + "| ");
+                        }
+                    }
+
 
                     if (!tiles[i][j].getZombies().isEmpty()) {
                         for (Zombie zombiePrint : tiles[i][j].getZombies()) {
