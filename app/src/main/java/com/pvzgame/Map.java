@@ -81,7 +81,7 @@ public class Map {
                         }
                     }
 
-
+                    // Zombies
                     if (!tiles[i][j].getZombies().isEmpty()) {
                         for (Zombie zombiePrint : tiles[i][j].getZombies()) {
                             System.out.print("Z." + zombiePrint.getZombieType());
