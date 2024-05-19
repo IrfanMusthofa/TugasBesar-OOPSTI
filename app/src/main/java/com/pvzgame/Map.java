@@ -31,6 +31,10 @@ public class Map {
         return tiles;
     }
 
+    public Tile getTile(int row, int col) {
+        return tiles[row][col];
+    }
+
     public int getRows() {
         return rows;
     }
