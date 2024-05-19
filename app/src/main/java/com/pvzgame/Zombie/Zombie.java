@@ -1,4 +1,5 @@
 package com.pvzgame.Zombie;
+import com.pvzgame.*;
 
 public abstract class Zombie {
 
@@ -12,10 +13,11 @@ public abstract class Zombie {
     private int zombieHealth;
     private int zombieAttackDamage;
     private int zombieAttackSpeed;
-    private int zombieMoveSpeed;
+    private int zombieMoveSpeed; // berapa point yang ditambahkan setiap detik
+    private int currentmovepoints; // berapa point yang sudah ditambahkan
+    private int movePoint = 20; // berapa point yang dibutuhkan untuk bergerak
     
-    private int currentCol;
-    private int currentRow;
+    private int col;
 
     private Boolean isHidden;
     private Boolean isSlowed;
@@ -57,6 +59,14 @@ public abstract class Zombie {
         return zombieMoveSpeed;
     }
 
+    public int getCurrentMovePoints() {
+        return currentmovepoints;
+    }
+
+    public int getMovePoint() {
+        return movePoint;
+    }
+    
     public boolean getIsHidden() {
         return isHidden;
     }
@@ -70,11 +80,7 @@ public abstract class Zombie {
     }
 
     public int getCurrentCol() {
-        return currentCol;
-    }
-
-    public int getCurrentRow() {
-        return currentRow;
+        return col;
     }
 
     // Setters
@@ -122,51 +128,57 @@ public abstract class Zombie {
         this.hasTool = hasTool;
     }
 
-    public void setCurrentCol(int currentCol) {
-        this.currentCol = currentCol;
+    public void setCurrentCol(int col) {
+        this.col = col;
     }
 
-    public void setCurrentRow(int currentRow) {
-        this.currentRow = currentRow;
+    // methods
+    public void zombieAction(Map map, int row, int col){
+        if (getZombieHealth() <= 125){ // pengecekan tool dan mengubah status tool
+            setHasTool(false);
+        }
+        if (map.getTile(row, col).getPlant() != null){ // mengecek ada tanaman atau tidak
+            map.getTile(row, col).getPlant().plantAttacked(getZombieAttackDamage()*getZombieAttackSpeed());
+        } 
+        else {
+            addCurrentMovePoints(getZombieMoveSpeed()); // movemodifier defaultnya 2 jadinya movetime setiap detik nambah 2
+            if (getCurrentMovePoints() <= getMovePoint()){ // apakah sudah waktunya bergerak
+                moveForward(map, row, col);
+                resetCurrentMovePoints();
+            }
+        }
     }
 
-    //methods
-    // public void zombieAction(){
-    //     if (getZombieHealth() <= 125){ // pengecekan tool dan mengubah status tool
-    //         setHasTool(false);
-    //     }
-    //     if (getCurrentTile().getPlant() != null){// tile.getPlant() != null
-    //         // attack
-    //         // getCurrentTile().getPlant().attack();
-    //     } 
-    //     else {
-    //         int n++;
-    //         if ((lifeTime - birthTime) % moveSpeed == 0){ // (currenttime - birthtime) % movespeed >= 1
-    //             moveForward();
-    //         }
-    //     }
-    // }
-
-    public void zombieAttack(int damage) {
+    public void zombieAttacked(int damage) {
         zombieHealth -= damage;
     }   
 
-
     public void slowZombie() {
-        this.zombieMoveSpeed = zombieMoveSpeed * 2;
+        isSlowed = true;
+        this.zombieMoveSpeed /= 2;
+        this.zombieAttackDamage /= 2;
     }
 
     public void unslowZombie() {
         isSlowed = false;
-        this.zombieMoveSpeed = zombieMoveSpeed / 2;
+        this.zombieMoveSpeed *= 2;
+        this.zombieAttackDamage *= 2;
     }
 
-    // public void moveForward(){
-    //     int newCol = currentCol - 1;
-    //     if (newCol >= 0) {
-    //         getCurrentTile().removeZombie(this);
-    //         map.getTile(currentRow, newCol).addZombie(this);
-    //         currentCol = newCol;
-    //     }
-    // }
+    public void moveForward(Map map, int row, int col){
+        int newCol = col - 1;
+        if (newCol >= 0) {
+            map.getTile(row, col).removeZombie(this);
+            map.getTile(row, newCol).addZombie(this);
+            col = newCol;
+        }
+    }
+
+    public void addCurrentMovePoints(int points) {
+       this.currentmovepoints += points;
+    }
+
+    public void resetCurrentMovePoints() {
+        this.currentmovepoints = 0;
+    }
 }

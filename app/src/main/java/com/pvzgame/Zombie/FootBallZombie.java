@@ -8,9 +8,9 @@ public class FootBallZombie extends Zombie {
         setZombieType(5);
         setZombieName("FootballZombie");
         setZombieHealth(500);
-        setZombieAttackDamage(75);
+        setZombieAttackDamage(100);
         setZombieAttackSpeed(2);
-        setZombieMoveSpeed(3);
+        setZombieMoveSpeed(4);
 
         setIsAquatic(false);
         setIsHidden(false);

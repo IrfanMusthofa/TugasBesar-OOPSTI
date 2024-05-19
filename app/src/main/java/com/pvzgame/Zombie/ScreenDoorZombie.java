@@ -10,7 +10,7 @@ public class ScreenDoorZombie extends Zombie {
         setZombieHealth(400);
         setZombieAttackDamage(100);
         setZombieAttackSpeed(1);
-        setZombieMoveSpeed(4);
+        setZombieMoveSpeed(2);
 
         setIsAquatic(false);
         setIsHidden(false);
@@ -21,7 +21,8 @@ public class ScreenDoorZombie extends Zombie {
     @Override
     public void slowZombie() {
         if (!getHasTool()){
-            setZombieMoveSpeed(getZombieMoveSpeed()*2);
+            setZombieMoveSpeed(getZombieMoveSpeed()/2);
+            setZombieAttackSpeed(getZombieAttackDamage()/2);
         }
     }
 }

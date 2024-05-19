@@ -10,7 +10,7 @@ public class SnorkelZombie extends Zombie {
         setZombieHealth(125);
         setZombieAttackDamage(100);
         setZombieAttackSpeed(1);
-        setZombieMoveSpeed(4);
+        setZombieMoveSpeed(2);
 
         setIsAquatic(true);
         setIsHidden(true);

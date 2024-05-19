@@ -10,7 +10,7 @@ public class BucketHeadZombie extends Zombie {
         setZombieHealth(300);
         setZombieAttackDamage(100);
         setZombieAttackSpeed(1);
-        setZombieMoveSpeed(4);
+        setZombieMoveSpeed(2);
 
         setIsAquatic(false);
         setIsHidden(false);

@@ -10,7 +10,7 @@ public class ConeHeadZombie extends Zombie {
         setZombieHealth(250);
         setZombieAttackDamage(100);
         setZombieAttackSpeed(1);
-        setZombieMoveSpeed(4);
+        setZombieMoveSpeed(2);
 
         setIsAquatic(false);
         setIsHidden(false);

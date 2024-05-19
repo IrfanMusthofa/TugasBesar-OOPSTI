@@ -119,4 +119,8 @@ public abstract class Plant {
     public void setCurrentRow(int currentRow) {
         this.currentRow = currentRow;
     }
+
+    public void plantAttacked(int damage) {
+        plantHealth -= damage;
+    }
 }
