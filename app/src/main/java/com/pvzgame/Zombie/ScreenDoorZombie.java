@@ -3,16 +3,13 @@ package com.pvzgame.Zombie;
 public class ScreenDoorZombie extends Zombie {
    
     // Constructor
-    public ScreenDoorZombie(int birthTime, int currentRow) {
+    public ScreenDoorZombie(int birthTime) {
         setBirthTime(birthTime);
         setZombieName("ScreenDoorZombie");
-
         setZombieHealth(400);
         setZombieAttackDamage(100);
         setZombieAttackSpeed(1);
         setZombieMoveSpeed(4);
-        setCurrentCol(11);
-        setCurrentRow(currentRow);
 
         setIsAquatic(false);
         setIsHidden(false);

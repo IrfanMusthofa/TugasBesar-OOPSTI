@@ -1,18 +1,15 @@
 package com.pvzgame.Zombie;
 
-public class BucketHeadZombie extends Zombie{
+public class BucketHeadZombie extends Zombie {
     
-    //constructor
-    public BucketHeadZombie(int birthTime, int currentRow){
+    // Constructor
+    public BucketHeadZombie(int birthTime) {
         setBirthTime(birthTime);
         setZombieName("BucketHeadZombie");
-
         setZombieHealth(300);
         setZombieAttackDamage(100);
         setZombieAttackSpeed(1);
         setZombieMoveSpeed(4);
-        setCurrentCol(11);
-        setCurrentRow(currentRow);
 
         setIsAquatic(false);
         setIsHidden(false);

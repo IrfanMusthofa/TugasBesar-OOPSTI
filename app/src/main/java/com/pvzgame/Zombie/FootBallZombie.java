@@ -1,19 +1,15 @@
 package com.pvzgame.Zombie;
 
-public class FootBallZombie extends Zombie{
+public class FootBallZombie extends Zombie {
     
-
-    // constructor
-    public FootBallZombie(int birthTime, int currentRow) {
+    // Constructor
+    public FootBallZombie(int birthTime) {
         setBirthTime(birthTime);
         setZombieName("FootballZombie");
-
         setZombieHealth(500);
         setZombieAttackDamage(75);
         setZombieAttackSpeed(2);
         setZombieMoveSpeed(3);
-        setCurrentCol(11);
-        setCurrentRow(currentRow);
 
         setIsAquatic(false);
         setIsHidden(false);
