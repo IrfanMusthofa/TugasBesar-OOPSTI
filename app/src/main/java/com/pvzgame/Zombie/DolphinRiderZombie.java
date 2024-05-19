@@ -1,20 +1,20 @@
 package com.pvzgame.Zombie;
 
-public class PoleVaultingZombie extends Zombie{
-
-    // Constructor
-    public PoleVaultingZombie(int birthTime, int currentRow) {
+public class DolphinRiderZombie extends Zombie{
+    
+    //constructor
+    public DolphinRiderZombie(int birthTime, int currentRow) {
         setBirthTime(birthTime);
-        setZombieName("PoleVaultingZombie");
+        setZombieName("DolphinRiderZombie");
 
         setZombieHealth(175);
-        setZombieAttackDamage(75);
-        setZombieAttackSpeed(2);
+        setZombieAttackDamage(100);
+        setZombieAttackSpeed(1);
         setZombieMoveSpeed(3);
         setCurrentCol(currentCol);
         setCurrentRow(currentRow);
 
-        setIsAquatic(false);
+        setIsAquatic(true);
         setIsHidden(false);
         setIsSlowed(false);
         setHasTool(true);   

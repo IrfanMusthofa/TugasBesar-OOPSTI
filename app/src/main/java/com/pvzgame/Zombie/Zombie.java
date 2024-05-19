@@ -1,6 +1,5 @@
 package com.pvzgame.Zombie;
 import com.pvzgame.Tile;
-import com.pvzgame.Plant.Plant;
 import com.pvzgame.Map;
 
 public abstract class Zombie {
@@ -17,10 +16,10 @@ public abstract class Zombie {
     public int currentRow;
 
     private Boolean isAquatic;
-    public boolean isHidden;
-    public boolean isSlowed;
-    public boolean hasTool;
-
+    private boolean isHidden;
+    private boolean isSlowed;
+    private boolean hasTool;
+    
     private Map map;
 
     // Constructor
@@ -55,8 +54,32 @@ public abstract class Zombie {
         return zombieMoveSpeed;
     }
 
+    public boolean getIsHidden() {
+        return isHidden;
+    }
+
+    public boolean getIsSlowed() {
+        return isSlowed;
+    }
+
+    public boolean getHasTool() {
+        return hasTool;
+    }
+
+    public int getCurrentCol() {
+        return currentCol;
+    }
+
+    public int getCurrentRow() {
+        return currentRow;
+    }
+
+    public Map getMap() {
+        return map;
+    }
+
     public Tile getCurrentTile() {
-        return map.getTile(currentRow, currentCol); // Use the instance of Map
+        return map.getTile(currentRow, currentCol);
     }
 
     // Setters
@@ -88,8 +111,31 @@ public abstract class Zombie {
         this.zombieMoveSpeed = zombieMoveSpeed;
     }
 
+    public void setIsHidden(boolean isHidden) {
+        this.isHidden = isHidden;
+    }
+
+    public void setIsSlowed(boolean isSlowed) {
+        this.isSlowed = isSlowed;
+    }
+
+    public void setHasTool(boolean hasTool) {
+        this.hasTool = hasTool;
+    }
+
+    public void setCurrentCol(int currentCol) {
+        this.currentCol = currentCol;
+    }
+
+    public void setCurrentRow(int currentRow) {
+        this.currentRow = currentRow;
+    }
+
     //methods
     public void zombieAction(){
+        if (getZombieHealth() <= 125){ // pengecekan tool dan mengubah status tool
+            setHasTool(false);
+        }
         if (getCurrentTile().getPlant() != null){// tile.getPlant() != null
             // attack
             // getCurrentTile().getPlant().attack();
@@ -105,21 +151,14 @@ public abstract class Zombie {
         zombieHealth -= damage;
     }   
 
-    public void changeHiddenStatus() {
-        isHidden = !isHidden;
-    }
 
     public void SlowZombie() {
-        this.zombieMoveSpeed = zombieMoveSpeed / 2;
-        zombieMoveSpeed = zombieMoveSpeed / 2;
+        this.zombieMoveSpeed = zombieMoveSpeed * 2;
     }
 
     public void UnslowZombie() {
         isSlowed = false;
-    }
-
-    public void destroyTool() {
-        hasTool = false;
+        this.zombieMoveSpeed = zombieMoveSpeed / 2;
     }
 
     public void moveForward(){

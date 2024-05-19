@@ -1,13 +1,13 @@
 package com.pvzgame.Zombie;
 
-public class NormalZombie extends Zombie {
+public class BucketHeadZombie extends Zombie{
     
-    // Constructor
-    public NormalZombie(int birthTime, int currentRow) {
+    //constructor
+    public BucketHeadZombie(int birthTime, int currentRow){
         setBirthTime(birthTime);
-        setZombieName("NormalZombie");
+        setZombieName("BucketHeadZombie");
 
-        setZombieHealth(125);
+        setZombieHealth(300);
         setZombieAttackDamage(100);
         setZombieAttackSpeed(1);
         setZombieMoveSpeed(4);
@@ -17,6 +17,6 @@ public class NormalZombie extends Zombie {
         setIsAquatic(false);
         setIsHidden(false);
         setIsSlowed(false);
-        setHasTool(false);        
+        setHasTool(true);   
     }
 }
