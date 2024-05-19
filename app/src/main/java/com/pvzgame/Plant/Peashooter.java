@@ -1,5 +1,6 @@
 package com.pvzgame.Plant;
-
+import com.pvzgame.Tile;
+import com.pvzgame.Map;
 public class Peashooter extends Plant {
 
     // Constructor
@@ -15,4 +16,5 @@ public class Peashooter extends Plant {
         setPlantAttackDamage(25);
         setPlantAttackSpeed(4);
     }
+
 }
