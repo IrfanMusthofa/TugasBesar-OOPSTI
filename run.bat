@@ -1,2 +1,2 @@
 @echo off
-.\gradlew -q --console plain runchmod +x run.sh
+./gradlew -q --console plain run

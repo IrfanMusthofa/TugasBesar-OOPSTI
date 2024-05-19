@@ -1,13 +1,13 @@
 package com.pvzgame.Plant;
 
-public class Sunflower extends Plant {
+public class Lilypad extends Plant {
 
     // Constructor
-    public Sunflower(int birthTime) {
+    public Lilypad(int birthTime) {
         setBirthTime(birthTime);
-        setPlantName("Sunflower");
-        setIsWaterType(false);
-        setSunCost(50);
+        setPlantName("Lilypad");
+        setIsWaterType(true);
+        setSunCost(25);
         setPlantHealth(100);
         setPlantCooldown(10);
         setPlantAttackRange(0);
@@ -15,3 +15,4 @@ public class Sunflower extends Plant {
         setPlantAttackSpeed(0);
     }
 }
+

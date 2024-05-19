@@ -1,15 +1,16 @@
 package com.pvzgame.Plant;
 
-public class Sunflower extends Plant {
+
+public class Wallnut extends Plant {
 
     // Constructor
-    public Sunflower(int birthTime) {
+    public Wallnut(int birthTime) {
         setBirthTime(birthTime);
-        setPlantName("Sunflower");
+        setPlantName("Wallnut");
         setIsWaterType(false);
         setSunCost(50);
-        setPlantHealth(100);
-        setPlantCooldown(10);
+        setPlantHealth(1000);
+        setPlantCooldown(20);
         setPlantAttackRange(0);
         setPlantAttackDamage(0);
         setPlantAttackSpeed(0);

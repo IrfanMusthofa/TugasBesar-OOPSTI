@@ -1,90 +1,76 @@
 package com.pvzgame.Zombie;
 
-import com.pvzgame.PlayableCharacter;
+public abstract class Zombie {
 
-public abstract class Zombie extends PlayableCharacter{
-    public int zombieType;
-    public String zombieName;
-    public int moveSpeed;
-    public boolean isSlowed;
-    public boolean isHidden;
-    public boolean waterBased;
-    public boolean hasTool;
-    
-    public Zombie(String name, int health, int attackDamage, int attackSpeed, int timeCreated, int currentCol, int zombieType, String zombieName, int moveSpeed, boolean isSlowed, boolean isHidden, boolean waterBased, boolean hasTool) {
-        this.name = name;
-        this.health = health;
-        this.attackDamage = attackDamage;
-        this.attackSpeed = attackSpeed;
-        this.timeCreated = timeCreated;
-        this.currentCol = currentCol;
-        this.zombieType = zombieType;
-        this.zombieName = zombieName;
-        this.moveSpeed = moveSpeed;
-        this.isSlowed = isSlowed;
-        this.isHidden = isHidden;
-        this.waterBased = waterBased;
-        this.hasTool = hasTool;
-    }
+    // Attributes 
+    private String zombieName;
+    private int birthTime;
 
-    // Getter
-    public int getZombieType() {
-        return zombieType;
-    }
+    private Boolean isAquatic;
 
+    private int zombieHealth;
+    private int zombieAttackDamage;
+    private int zombieAttackSpeed;
+    private int zombieMoveSpeed;
+
+    // Constructor
+    // Will be implemented by subclasses
+
+    // Getters
     public String getZombieName() {
         return zombieName;
     }
 
-    public int getMoveSpeed() {
-        return moveSpeed;
+    public int getBirthTime() {
+        return birthTime;
     }
 
-    public boolean isSlowed() {
-        return isSlowed;
+    public Boolean getIsAquatic() {
+        return isAquatic;
     }
 
-    public boolean isHidden() {
-        return isHidden;
+    public int getZombieHealth() {
+        return zombieHealth;
     }
 
-    public boolean isWaterBased() {
-        return waterBased;
+    public int getZombieAttackDamage() {
+        return zombieAttackDamage;
     }
 
-    public boolean hasTool() {
-        return hasTool;
+    public int getZombieAttackSpeed() {
+        return zombieAttackSpeed;
     }
 
-    // Setter
-    public void attacked(int damage) {
-        health -= damage;
-    }   
-
-    public void changeHiddenStatus() {
-        isHidden = !isHidden;
+    public int getZombieMoveSpeed() {
+        return zombieMoveSpeed;
     }
 
-    public void SlowZombie() {
-        this.moveSpeed = moveSpeed / 2;
-        isSlowed = true;
+    // Setters
+    public void setZombieName(String zombieName) {
+        this.zombieName = zombieName;
     }
 
-    public void UnslowZombie() {
-        isSlowed = false;
+    public void setBirthTime(int birthTime) {
+        this.birthTime = birthTime;
     }
 
-    public void destroyTool() {
-        hasTool = false;
+    public void setIsAquatic(Boolean isAquatic) {
+        this.isAquatic = isAquatic;
     }
 
-    public void moveForward(){}
-
-    public void attack(){
-        if (true) { // if there is a plant in front
-            // panggil fungsi attacked dari plant
-        }
+    public void setZombieHealth(int zombieHealth) {
+        this.zombieHealth = zombieHealth;
     }
 
-    public void dead(){}
+    public void setZombieAttackDamage(int zombieAttackDamage) {
+        this.zombieAttackDamage = zombieAttackDamage;
+    }
+
+    public void setZombieAttackSpeed(int zombieAttackSpeed) {
+        this.zombieAttackSpeed = zombieAttackSpeed;
+    }
+
+    public void setZombieMoveSpeed(int zombieMoveSpeed) {
+        this.zombieMoveSpeed = zombieMoveSpeed;
+    }
 }

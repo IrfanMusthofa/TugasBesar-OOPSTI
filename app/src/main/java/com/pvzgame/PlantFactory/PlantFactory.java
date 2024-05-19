@@ -1,5 +1,7 @@
 package com.pvzgame.PlantFactory;
 
-public abstract class PlantFactory {
-    public abstract Plant createPlant();
+import com.pvzgame.Plant.Plant;
+
+public interface PlantFactory<T extends Plant>{
+    T create(int birthTime);
 }

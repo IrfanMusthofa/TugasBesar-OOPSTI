@@ -1,98 +1,113 @@
 package com.pvzgame.Plant;
 
-abstract public class Plant {
-    private boolean isWaterType;
-    private String name;
+public abstract class Plant {
+    
+    // Attributes
+    private String plantName;
+    private int birthTime;
+
+    private Boolean isWaterType;
+
     private int sunCost;
-    private int range;
-    private int cooldown;
-    
-    private int health;
-    private int attackDamage;
-    private int attackSpeed;
-    private int timeCreated;
+    private int plantHealth;
+    private int plantCooldown;
+    private int plantAttackRange;
+    private int plantAttackDamage;
+    private int plantAttackSpeed;
+
     private int currentCol;
+    private int currentRow;
 
-    
+    // Constructor
+    // Will be implemented by subclasses
 
-    public boolean getIsWaterType(){
+    // Getters
+    public String getPlantName() {
+        return plantName;
+    }
+
+    public int getBirthTime() {
+        return birthTime;
+    }
+
+    public Boolean getIsWaterType() {
         return isWaterType;
     }
-    public void setIsWaterType(Boolean currentStatus){
-        isWaterType =currentStatus;
-    }
-    public String getName(){
-        return name;
-    }
 
-    public void setName(String name){
-        this.name =name;
-    }
-
-    public int getSunCost(){
+    public int getSunCost() {
         return sunCost;
     }
 
-    public void setSunCost(int sunCost){
-        this.sunCost =sunCost;
-    }
-    public int getRange(){
-        return range;
+    public int getPlantHealth() {
+        return plantHealth;
     }
 
-    public void setRange(int range){
-        this.range = range;
-    }
-    public int getCooldown(){
-        return cooldown;
+    public int getPlantCooldown() {
+        return plantCooldown;
     }
 
-    public void setCooldown(int cooldown){
-        this.cooldown = cooldown;
+    public int getPlantAttackRange() {
+        return plantAttackRange;
     }
 
-
-    public int getHealth(){
-        return health;
-    }
-    public int getAttackDamage(){
-        return attackDamage;
-    }
-    public void setAttackDamage(int attackDamage){
-        this.attackDamage =attackDamage;
+    public int getPlantAttackDamage() {
+        return plantAttackDamage;
     }
 
-    public int getAttackSpeed(){
-        return attackSpeed;
+    public int getPlantAttackSpeed() {
+        return plantAttackSpeed;
     }
 
-    public void setAttackSpeed(int attackSpeed){
-        this.attackSpeed = attackSpeed;
-    }
-    public int getTimeCreated(){
-        return timeCreated;
-    }
-
-    public void setTimeCreated(int timeCreated){
-        this.timeCreated =timeCreated;
-    }
-    public int getCurrentCol(){
+    public int getCurrentCol() {
         return currentCol;
     }
-    public void setCurrentCol(int currentCol){
-        this.currentCol =currentCol;
-    }
-    
 
-    public void attacked(int damage){
-        health -= damage;
-        if (health <=0){
-            //panggil dead tile remove//
-        }
+    public int getCurrentRow() {
+        return currentRow;
     }
-    
-    
-    public void setHealth(int health){
-        this.health = health;
+
+    // Setters
+    public void setPlantName(String plantName) {
+        this.plantName = plantName;
+    }
+
+    public void setBirthTime(int birthTime) {
+        this.birthTime = birthTime;
+    }
+
+    public void setIsWaterType(Boolean isWaterType) {
+        this.isWaterType = isWaterType;
+    }
+
+    public void setSunCost(int sunCost) {
+        this.sunCost = sunCost;
+    }
+
+    public void setPlantHealth(int plantHealth) {
+        this.plantHealth = plantHealth;
+    }
+
+    public void setPlantCooldown(int plantCooldown) {
+        this.plantCooldown = plantCooldown;
+    }
+
+    public void setPlantAttackRange(int plantAttackRange) {
+        this.plantAttackRange = plantAttackRange;
+    }
+
+    public void setPlantAttackDamage(int plantAttackDamage) {
+        this.plantAttackDamage = plantAttackDamage;
+    }
+
+    public void setPlantAttackSpeed(int plantAttackSpeed) {
+        this.plantAttackSpeed = plantAttackSpeed;
+    }
+
+    public void setCurrentCol(int currentCol) {
+        this.currentCol = currentCol;
+    }
+
+    public void setCurrentRow(int currentRow) {
+        this.currentRow = currentRow;
     }
 }

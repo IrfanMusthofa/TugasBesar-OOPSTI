@@ -1,7 +1,15 @@
 package com.pvzgame.Zombie;
 
-public class NormalZombie extends Zombie{
-    public NormalZombie(String name, int health, int attackDamage, int attackSpeed, int timeCreated, int currentCol, int zombieType, String zombieName, int moveSpeed, boolean isSlowed, boolean isHidden, boolean waterBased, boolean hasTool) {
-        super(name, health, attackDamage, attackSpeed, timeCreated, currentCol, zombieType, zombieName, moveSpeed, isSlowed, isHidden, waterBased, hasTool);
+public class NormalZombie extends Zombie {
+    
+    // Constructor
+    public NormalZombie(int birthTime) {
+        setBirthTime(birthTime);
+        setZombieName("NormalZombie");
+        setIsAquatic(false);
+        setZombieHealth(125);
+        setZombieAttackDamage(100);
+        setZombieAttackSpeed(1);
+        setZombieMoveSpeed(5);
     }
 }

@@ -82,5 +82,3 @@ public class Tile {
         water = bool;
     }
 }
-
-
