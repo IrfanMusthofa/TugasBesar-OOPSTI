@@ -6,39 +6,43 @@ import com.pvzgame.Plant.Plant;
 import com.pvzgame.Zombie.Zombie;
 
 public class Menu {
-    private final Inventory currentInventory;
-    private final Deck currentDeck;
-    
-    public Menu(Inventory currInventory, Deck currDeck){
-        this.currentInventory = currInventory;
-        this.currentDeck = currDeck;
+
+    public void printMenu() {
+        System.out.println("\nMenu Command:");
+        System.out.println("1. Start Game");
+        System.out.println("2. Help");
+        System.out.println("3. Lihat Daftar Tanaman");
+        System.out.println("4. Lihat Daftar Zombie");
+        System.out.println("5. Lihat Deck");
+        System.out.println("6. Lihat Inventory");
+        System.out.println("7. Keluar");
     }
 
-    public void start(){
-        System.out.println("Game dimulai!");
+    public void printPlantList() {
+        System.out.println("\nDaftar Tanaman: ");
+        System.out.println("1. Peashooter");
+        System.out.println("2. Kelp");
+        System.out.println("3. Jalapeno");
+        System.out.println("4. Lilypad");
+        System.out.println("5. Sunflower");
+        System.out.println("6. Wallnut");
+        System.out.println("7. PotatoMine");
+        System.out.println("8. Snowpea");
+        System.out.println("9. Squash");
+        System.out.println("10. Repeater");
     }
 
-    public void help(){
-        System.out.println("Help");
-    }
-
-    public void printPlantList(){
-        List<Plant> plants = currentInventory.getPlants(); // Asumsi Inventory memiliki metode getPlants
-        System.out.println("Daftar Tanaman:");
-        for (Plant plant : plants) {
-            System.out.println(plant.getPlantName());
-        }    }
-
-    public void printZombieList(){
-        List<Zombie> zombies = currentInventory.getZombies(); // Asumsi Inventory memiliki metode getZombies
-        System.out.println("Daftar Zombie:");
-        for (Zombie zombie : zombies) {
-            System.out.println(zombie.getZombieName());
-        }
-    }
-
-    public void printDeck(){
-        System.out.println("Daftar Tanaman di Deck: ");
-        currentDeck.printDeck();
+    public void printZombieList() {
+        System.out.println("\nDaftar Zombie: ");
+        System.out.println("1. BucketHeadZombie");
+        System.out.println("2. ConeHeadZombie");
+        System.out.println("3. DolphinRiderZombie");
+        System.out.println("4. DuckyTubeZombie");
+        System.out.println("5. FootBallZombie");
+        System.out.println("6. NewsPaperZombie");
+        System.out.println("7. PoleVaultingZombie");
+        System.out.println("8. SnorkelZombie");
+        System.out.println("9. NormalZombie");
+        System.out.println("10. ScreenDoorZombie");
     }
 }

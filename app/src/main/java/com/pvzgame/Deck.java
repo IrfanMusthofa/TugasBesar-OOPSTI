@@ -2,58 +2,113 @@ package com.pvzgame;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.pvzgame.Plant.Plant;
+import com.pvzgame.Plant.*;
+import com.pvzgame.PlantFactory.*;
 
-public class Deck {
-    private final List<Plant> currentDeck;
-    private Integer availableSlot;
+public class Deck<T> {
 
+    // Attributes
+    private List<PlantFactory<? extends Plant>> currentDeck;
+    private final int maxSlot = 6;
+    private Boolean isDeckFull = false;
+
+    // Constructor
     public Deck(){
         currentDeck = new ArrayList<>();
-        availableSlot = 0;
     }
 
-    public List<Plant> getDeck(){
+    // Getter
+    public List<PlantFactory<? extends Plant>> getCurrentDeck(){
         return currentDeck;
     }
 
+    public PlantFactory<? extends Plant> get(int index){
+        return currentDeck.get(index);
+    }
+
     public boolean isDeckEmpty(){
-        return availableSlot == 0;
+        return currentDeck.isEmpty();
     }
 
     public boolean isDeckFull(){
-        return availableSlot == 6;
+        return currentDeck.size() == maxSlot;
     }
 
     public void addPlant(Plant plant){
-        if (!isDeckFull()) {
-            currentDeck.add(plant);
-            availableSlot++;
-        } else {
-            System.out.println("Deck is full. Cannot add more plants.");
+        try {
+            if (!isDeckFull()) {
+                switch (plant.getPlantName()) {
+                    case "Jalapeno":
+                        currentDeck.add(new JalapenoFactory());
+                        break;
+                    case "Kelp":
+                        currentDeck.add(new KelpFactory());
+                        break;
+                    case "Lilypad":
+                        currentDeck.add(new LilypadFactory());
+                        break;
+                    case "Peashooter":
+                        currentDeck.add(new PeashooterFactory());
+                        break;
+                    case "PotatoMine":
+                        currentDeck.add(new PotatoMineFactory());
+                        break;
+                    case "Repeater":
+                        currentDeck.add(new RepeaterFactory());
+                        break;
+                    case "Snowpea":
+                        currentDeck.add(new SnowpeaFactory());
+                        break;
+                    case "Squash":
+                        currentDeck.add(new SquashFactory());
+                        break;
+                    case "Sunflower":
+                        currentDeck.add(new SunflowerFactory());
+                        break;
+                    case "Wallnut":
+                        currentDeck.add(new WallnutFactory());
+                        break;
+                    default:
+                        break;
+                }
+            } else {
+                isDeckFull = true;
+                System.out.println("Deck sudah penuh!");
+            }
+        } catch (Exception E) {
+            E.printStackTrace();
         }
     }
 
-    public void swapPlant(Plant newPlant, int plantIndex){
-        currentDeck.remove(plantIndex);
-        currentDeck.add(plantIndex, newPlant);
+    public void removePlant(PlantFactory<? extends Plant> plant) {
+        currentDeck.remove(plant);
     }
 
-    public void removePlant(){
-        if (!isDeckEmpty()) {
-            currentDeck.remove(availableSlot-1);
-            availableSlot--;
-        } else {
-            System.out.println("Deck is empty. Cannot remove plant.");
+    public void swapPlant(int index1, int index2) {
+        PlantFactory<? extends Plant> temp = currentDeck.get(index1);
+        try {
+            currentDeck.set(index1, currentDeck.get(index2));
+            currentDeck.set(index2, temp);
+        } catch (Exception E) {
+            System.out.println("Index tidak valid!");
+            System.out.println("Masukkan index dengan benar!");
         }
     }
 
     public void printDeck(){
-        System.out.println("List Plant di dalam Deck:");
-        for (int i = 0; i < availableSlot; i++) {
-            System.out.printf("%d. %s", i+1, currentDeck.get(i).getPlantName());   
+        System.out.println("\nList Plant di dalam Deck:");
+        int count = 1;
+        for (PlantFactory<? extends Plant> plant : currentDeck) {
+            System.out.println(count + ". " + plant.create(0).getPlantName());
+            count++;
         }
     }
 
-    // tes
+    public Boolean getIsDeckFull(){
+        return isDeckFull;
+    }
+
+    public void setIsDeckFull(Boolean isDeckFull){
+        this.isDeckFull = isDeckFull;
+    }
 }

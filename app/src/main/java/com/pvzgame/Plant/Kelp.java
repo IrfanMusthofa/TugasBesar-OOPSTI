@@ -21,13 +21,13 @@ public class Kelp extends Plant {
 
     //action
     // setelah dipanggil remove zombie
-    public void plantAction(Map map, int row, int cols){ 
-        Tile currentTile = map.getTile(row, cols);
-        if (currentTile.getZombies()!= null){ // ada zombie
-            List<Zombie> list =currentTiles[row][cols].getZombies(); //dapetin list zombie
-            currentTile.removeZombie(list[0]);// mengambil zombie yang pertama kali masuk ke tile
-        }
+    // public void plantAction(Map map, int row, int cols){ 
+    //     Tile currentTile = map.getTile(row, cols);
+    //     if (currentTile.getZombies()!= null){ // ada zombie
+    //         List<Zombie> list =currentTiles[row][cols].getZombies(); //dapetin list zombie
+    //         currentTile.removeZombie(list[0]);// mengambil zombie yang pertama kali masuk ke tile
+    //     }
         
-    }
+    // }
     
 }

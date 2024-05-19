@@ -38,12 +38,12 @@ public class PotatoMine extends Plant {
         this.isReadyToKill = isReadyToKill;
     }
 
-    //action
-    public void plantAttack(Map map){
-        Tile currentTile = map.getTile();
-        currentTile.removeAllZombies();
+    // //action
+    // public void plantAttack(Map map){
+    //     Tile currentTile = map.getTile();
+    //     currentTile.removeAllZombies();
 
-    }
+    // }
 
     public void plantAction(Map map, int row, int cols){ 
         Tile currentTile = map.getTile(row, cols);
