@@ -25,14 +25,17 @@ public class Squash extends Plant{
         Tile currentTile = map.getTile(row, cols);
         Tile prevTile = map.getTile(row, cols-1);
         Tile nextTile = map.getTile(row, cols+1);
-        if (currentTile.getZombies()!= null){ // ada zombie di tilenya squash
+        
+        
+        if(nextTile.getZombies()!=null){// ada zombie di depan squash
+            nextTile.removeAllZombies();
+        }
+        else if (currentTile.getZombies()!= null){ // ada zombie di tilenya squash
             currentTile.removeAllZombies();// menghilangkan semua zombie di current tile
         }
+
         else if(prevTile.getZombies()!=null){// ada zombie di belakangnya squash
             prevTile.removeAllZombies();
-        }
-        else if(nextTile.getZombies()!=null){// ada zombie di depan squash
-            nextTile.removeAllZombies();
         }
         
     }
