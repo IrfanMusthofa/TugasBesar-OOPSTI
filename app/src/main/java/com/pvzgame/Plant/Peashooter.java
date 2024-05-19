@@ -5,6 +5,7 @@ public class Peashooter extends Plant {
     // Constructor
     public Peashooter(int birthTime) {
         setBirthTime(birthTime);
+        setPlantType(4);
         setPlantName("Peashooter");
         setIsWaterType(false);
         setSunCost(100);

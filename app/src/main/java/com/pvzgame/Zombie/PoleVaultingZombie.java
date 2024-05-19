@@ -5,6 +5,7 @@ public class PoleVaultingZombie extends Zombie {
     // Constructor
     public PoleVaultingZombie(int birthTime) {
         setBirthTime(birthTime);
+        setZombieType(7);
         setZombieName("PoleVaultingZombie");
         setZombieHealth(175);
         setZombieAttackDamage(75);

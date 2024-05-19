@@ -5,6 +5,7 @@ public class Snowpea extends Plant {
     // Constructor
     public Snowpea(int birthTime) {
         setBirthTime(birthTime);
+        setPlantType(7);
         setPlantName("Snowpea");
         setIsWaterType(false);
         setSunCost(175);

@@ -5,6 +5,7 @@ public class Lilypad extends Plant {
     // Constructor
     public Lilypad(int birthTime) {
         setBirthTime(birthTime);
+        setPlantType(3);
         setPlantName("Lilypad");
         setIsWaterType(true);
         setSunCost(25);

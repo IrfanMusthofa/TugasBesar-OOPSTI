@@ -12,6 +12,7 @@ public class PotatoMine extends Plant {
     // Constructor
     public PotatoMine(int birthTime) {
         setBirthTime(birthTime);
+        setPlantType(5);
         setPlantName("PotatoMine");
         setIsWaterType(false);
         setSunCost(50);

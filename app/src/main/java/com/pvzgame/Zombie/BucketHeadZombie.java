@@ -5,6 +5,7 @@ public class BucketHeadZombie extends Zombie {
     // Constructor
     public BucketHeadZombie(int birthTime) {
         setBirthTime(birthTime);
+        setZombieType(1);
         setZombieName("BucketHeadZombie");
         setZombieHealth(300);
         setZombieAttackDamage(100);

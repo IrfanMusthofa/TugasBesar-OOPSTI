@@ -5,6 +5,7 @@ public class SnorkelZombie extends Zombie {
     // Constructor
     public SnorkelZombie(int birthTime) {
         setBirthTime(birthTime);
+        setZombieType(9);
         setZombieName("SnorkelZombie");
         setZombieHealth(125);
         setZombieAttackDamage(100);

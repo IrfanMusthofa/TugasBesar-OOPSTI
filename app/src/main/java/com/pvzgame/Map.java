@@ -1,4 +1,5 @@
 package com.pvzgame;
+import com.pvzgame.Zombie.*;
 
 public class Map {
     // Attributes
@@ -57,16 +58,23 @@ public class Map {
             for (int j = 1; j < cols - 1 ; j++) {
                 synchronized(tiles[i][j]) {
                     System.out.print("["); // Opening bracket
-                    if (tiles[i][j].getWater()) System.out.print("W"); // Water
-                    else System.out.print("L"); // Land
+                    
+                    // Water or Land
+                    if (tiles[i][j].getWater()) System.out.print("W|"); // Water
+                    else System.out.print("L|"); // Land
+                    
+                    if (tiles[i][j].getPlant() != null) {
+                        System.out.print("P." + tiles[i][j].getPlant().getPlantType() + "|");
+                    }
 
-                    // if (tiles[i][j].getPlant() != null) {
-                    //     System.out.print(tiles[i][j].getPlant().getPlantName().charAt(0));
-                    // } else if (tiles[i][j].getZombies().size() > 0) {
-                    //     System.out.print(tiles[i][j].getZombies().get(0).getZombieName().charAt(0));
-                    // } else {
-                    //     System.out.print(" ");
-                    // }
+                    if (!tiles[i][j].getZombies().isEmpty()) {
+                        for (Zombie zombiePrint : tiles[i][j].getZombies()) {
+                            System.out.print("Z." + zombiePrint.getZombieType());
+                            if (tiles[i][j].getZombies().get(tiles[i][j].getZombies().size()) != zombiePrint) {
+                                System.out.print(" ");
+                            }
+                        }
+                    }
                 }
                 System.out.print("]"); // Closing bracket
             }

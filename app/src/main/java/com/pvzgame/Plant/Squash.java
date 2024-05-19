@@ -7,6 +7,7 @@ public class Squash extends Plant{
     // Constructor
     public Squash(int birthTime) {
         setBirthTime(birthTime);
+        setPlantType(8);
         setPlantName("Squash");
         setIsWaterType(false);
         setSunCost(50);

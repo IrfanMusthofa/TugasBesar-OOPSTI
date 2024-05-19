@@ -4,6 +4,7 @@ public abstract class Plant {
     
     // Attributes
     private String plantName;
+    private int plantType;
     private int birthTime;
 
     private Boolean isWaterType;
@@ -24,6 +25,10 @@ public abstract class Plant {
     // Getters
     public String getPlantName() {
         return plantName;
+    }
+
+    public int getPlantType() {
+        return plantType;
     }
 
     public int getBirthTime() {
@@ -71,6 +76,10 @@ public abstract class Plant {
         this.plantName = plantName;
     }
 
+    public void setPlantType(int plantType) {
+        this.plantType = plantType;
+    }
+    
     public void setBirthTime(int birthTime) {
         this.birthTime = birthTime;
     }

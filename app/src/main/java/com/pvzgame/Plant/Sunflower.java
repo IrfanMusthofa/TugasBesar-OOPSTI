@@ -5,6 +5,7 @@ public class Sunflower extends Plant {
     // Constructor
     public Sunflower(int birthTime) {
         setBirthTime(birthTime);
+        setPlantType(9);
         setPlantName("Sunflower");
         setIsWaterType(false);
         setSunCost(50);

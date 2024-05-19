@@ -5,6 +5,7 @@ public class NewsPaperZombie extends Zombie {
     // Constructor
     public NewsPaperZombie(int birthTime) {
         setBirthTime(birthTime);
+        setZombieType(6);
         setZombieName("NewsPaperZombie");
         setZombieHealth(200);
         setZombieAttackDamage(100);

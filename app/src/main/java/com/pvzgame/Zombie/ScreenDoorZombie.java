@@ -5,6 +5,7 @@ public class ScreenDoorZombie extends Zombie {
     // Constructor
     public ScreenDoorZombie(int birthTime) {
         setBirthTime(birthTime);
+        setZombieType(8);
         setZombieName("ScreenDoorZombie");
         setZombieHealth(400);
         setZombieAttackDamage(100);

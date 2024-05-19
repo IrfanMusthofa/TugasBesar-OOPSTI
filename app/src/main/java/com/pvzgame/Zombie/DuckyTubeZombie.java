@@ -5,6 +5,7 @@ public class DuckyTubeZombie extends Zombie {
     // Constructor
     public DuckyTubeZombie(int birthTime) {
         setBirthTime(birthTime);
+        setZombieType(4);
         setZombieName("DuckyTubeZombie");
         setZombieHealth(100);
         setZombieAttackDamage(100);

@@ -7,6 +7,7 @@ public class Jalapeno extends Plant {
     // Constructor
     public Jalapeno(int birthTime) {
         setBirthTime(birthTime);
+        setPlantType(1);
         setPlantName("Jalapeno");
         setIsWaterType(false);
         setSunCost(125);

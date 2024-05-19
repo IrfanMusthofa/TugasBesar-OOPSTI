@@ -7,6 +7,7 @@ public class Kelp extends Plant {
     // Constructor
     public Kelp(int birthTime) {
         setBirthTime(birthTime);
+        setPlantType(2);
         setPlantName("Kelp");
         setIsWaterType(true);
         setSunCost(50);

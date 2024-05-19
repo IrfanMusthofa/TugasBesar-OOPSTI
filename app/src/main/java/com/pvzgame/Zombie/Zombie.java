@@ -4,6 +4,7 @@ public abstract class Zombie {
 
     // Attributes 
     private String zombieName;
+    private int zombieType;
     private int birthTime;
 
     private Boolean isAquatic;
@@ -26,6 +27,10 @@ public abstract class Zombie {
     // Getters
     public String getZombieName() {
         return zombieName;
+    }
+
+    public int getZombieType() {
+        return zombieType;
     }
 
     public int getBirthTime() {
@@ -75,6 +80,10 @@ public abstract class Zombie {
     // Setters
     public void setZombieName(String zombieName) {
         this.zombieName = zombieName;
+    }
+
+    public void setZombieType(int zombieType) {
+        this.zombieType = zombieType;
     }
 
     public void setBirthTime(int birthTime) {

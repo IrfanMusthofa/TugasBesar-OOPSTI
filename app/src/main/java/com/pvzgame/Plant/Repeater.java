@@ -5,6 +5,7 @@ public class Repeater extends Plant {
     // Constructor
     public Repeater(int birthTime) {
         setBirthTime(birthTime);
+        setPlantType(6);
         setPlantName("Repeater");
         setIsWaterType(false);
         setSunCost(200);

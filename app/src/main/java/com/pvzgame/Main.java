@@ -163,6 +163,7 @@ public class Main {
         System.out.println("MAP: ");
         Map map = new Map();
         map.printMap();
+
     }
 
 

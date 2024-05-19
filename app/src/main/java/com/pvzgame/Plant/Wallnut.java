@@ -6,6 +6,7 @@ public class Wallnut extends Plant {
     // Constructor
     public Wallnut(int birthTime) {
         setBirthTime(birthTime);
+        setPlantType(10);
         setPlantName("Wallnut");
         setIsWaterType(false);
         setSunCost(50);
