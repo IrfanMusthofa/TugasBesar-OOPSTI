@@ -34,6 +34,11 @@ public class Deck {
         }
     }
 
+    public void swapPlant(Plant newPlant, int plantIndex){
+        currentDeck.remove(plantIndex);
+        currentDeck.add(plantIndex, newPlant);
+    }
+
     public void removePlant(){
         if (!isDeckEmpty()) {
             currentDeck.remove(availableSlot-1);
@@ -43,10 +48,10 @@ public class Deck {
         }
     }
 
-    // public void printDeck(){
-    //     System.out.println("List Plant di dalam Deck:");
-    //     for (int i = 0; i < availableSlot; i++) {
-    //         System.out.printf("%d. %s", i+1, currentDeck.get(i).getName());   
-    //     }
-    // }
+    public void printDeck(){
+        System.out.println("List Plant di dalam Deck:");
+        for (int i = 0; i < availableSlot; i++) {
+            System.out.printf("%d. %s", i+1, currentDeck.get(i).getPlantName());   
+        }
+    }
 }
