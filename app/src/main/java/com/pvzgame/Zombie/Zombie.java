@@ -16,9 +16,9 @@ public abstract class Zombie {
     private int currentCol;
     private int currentRow;
 
-    private boolean isHidden;
-    private boolean isSlowed;
-    private boolean hasTool;
+    private Boolean isHidden;
+    private Boolean isSlowed;
+    private Boolean hasTool;
     
     // Constructor
     // Will be implemented by subclasses
