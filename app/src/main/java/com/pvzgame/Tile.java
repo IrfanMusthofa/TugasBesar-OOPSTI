@@ -70,15 +70,15 @@ public class Tile {
         plant = null;
     }
 
-    public void changeProtectedAreaStatus(Boolean bool) {
+    public void setProtectedAreaStatus(Boolean bool) {
         isProtectedArea = bool;
     }
 
-    public void changeSpawnAreaStatus(Boolean bool) {
+    public void setSpawnAreaStatus(Boolean bool) {
         isSpawnArea = bool;
     }
 
-    public void changeWaterStatus(Boolean bool) {
+    public void setWaterStatus(Boolean bool) {
         water = bool;
     }
 }

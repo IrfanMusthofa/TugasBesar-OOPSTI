@@ -1,5 +1,4 @@
 package com.pvzgame;
-import com.pvzgame.Zombie.Zombie;
 
 public class Map {
     // Attributes
@@ -16,14 +15,24 @@ public class Map {
             }
         }
 
+        // Protected Area
         for (int j = 0; j < rows; j++) {
-            tiles[j][0].changeProtectedAreaStatus(true);
+            tiles[j][0].setProtectedAreaStatus(true);
 
         }
 
+        // Spawn Area
         for (int k = 0; k < rows; k++) {
-            tiles[k][10].changeSpawnAreaStatus(true);
+            tiles[k][10].setSpawnAreaStatus(true);
         }
+
+        // Water Area
+        for (int l = 2; l < 4; l++) {
+            for (int m = 1; m < 10; m++) {
+                tiles[l][m].setWaterStatus(true);
+            }
+        }
+
     }
 
     // Getter
@@ -42,31 +51,26 @@ public class Map {
     public int getCols() {
         return cols;
     }
-    
-    // public void printMap(){
-    //     for (int i =0;i<rows;i++){
-    //         System.out.printf("///");
-    //         for(int j=1;j<cols-1;j++){
-                
-    //             if(tiles[i][j].getPlant()!=null){
-    //                 System.out.printf("[%s]",getPlant().getName());
-    //             }
-    //             else if(tiles[i][j].getZombies()!=null){
-    //                 System.out.printf("[");
-    //                 for(Zombie cekZombie : zombies){
-    //                     System.out.printf("(%s)",cekZombie.getName());
-    //                 }
-    //                 System.out.printf("]");
-    //             }
-    //             else {
-    //                 System.out.printf("kosong");
-    //             }
 
-    //             System.out.printf("||");
-    //         }
-    //         System.out.printf("...\n");
-    //     }
-    // }
+    public void printMap() {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 1; j < cols - 1 ; j++) {
+                synchronized(tiles[i][j]) {
+                    System.out.print("["); // Opening bracket
+                    if (tiles[i][j].getWater()) System.out.print("W"); // Water
+                    else System.out.print("L"); // Land
 
-    
+                    // if (tiles[i][j].getPlant() != null) {
+                    //     System.out.print(tiles[i][j].getPlant().getPlantName().charAt(0));
+                    // } else if (tiles[i][j].getZombies().size() > 0) {
+                    //     System.out.print(tiles[i][j].getZombies().get(0).getZombieName().charAt(0));
+                    // } else {
+                    //     System.out.print(" ");
+                    // }
+                }
+                System.out.print("]"); // Closing bracket
+            }
+            System.out.println(); // \br
+        }
+    }
 }

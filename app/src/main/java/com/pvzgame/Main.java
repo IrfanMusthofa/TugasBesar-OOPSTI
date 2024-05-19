@@ -5,6 +5,8 @@ import com.pvzgame.PlantFactory.*; // Import All the PeashooterFactory class
 import com.pvzgame.Zombie.*; // Import All the Zombie class
 import com.pvzgame.ZombieFactory.*; // Import All the ZombieFactory class
 
+
+
 // import com.pvzgame.PlantFactory.*;
 public class Main {
     
@@ -155,10 +157,18 @@ public class Main {
         System.out.println(zombie10.getIsHidden());
 
         System.out.println("=====================================");
+        
+        
+        // Driver for Map
+        System.out.println("MAP: ");
+        Map map = new Map();
+        map.printMap();
     }
 
 
 
 
-    
+
+
 }
+    
