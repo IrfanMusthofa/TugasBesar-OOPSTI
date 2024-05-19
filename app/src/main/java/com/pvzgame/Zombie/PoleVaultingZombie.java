@@ -11,7 +11,7 @@ public class PoleVaultingZombie extends Zombie{
         setZombieAttackDamage(75);
         setZombieAttackSpeed(2);
         setZombieMoveSpeed(3);
-        setCurrentCol(currentCol);
+        setCurrentCol(11);
         setCurrentRow(currentRow);
 
         setIsAquatic(false);

@@ -11,7 +11,7 @@ public class NewsPaperZombie extends Zombie{
         setZombieAttackDamage(100);
         setZombieAttackSpeed(1);
         setZombieMoveSpeed(4);
-        setCurrentCol(currentCol);
+        setCurrentCol(11);
         setCurrentRow(currentRow);
 
         setIsAquatic(false);

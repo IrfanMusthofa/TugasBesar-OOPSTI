@@ -11,7 +11,7 @@ public class DolphinRiderZombie extends Zombie{
         setZombieAttackDamage(100);
         setZombieAttackSpeed(1);
         setZombieMoveSpeed(3);
-        setCurrentCol(currentCol);
+        setCurrentCol(11);
         setCurrentRow(currentRow);
 
         setIsAquatic(true);
