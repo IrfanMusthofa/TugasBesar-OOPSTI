@@ -78,7 +78,7 @@ public class Map {
                 }
                 System.out.print("]"); // Closing bracket
             }
-            System.out.println(); // \br
+            System.out.println(); // newLine
         }
     }
 }

@@ -140,22 +140,23 @@ public abstract class Zombie {
     //         // getCurrentTile().getPlant().attack();
     //     } 
     //     else {
-    //         if (true){ // (currenttime - birthtime) % movespeed >= 1
+    //         int n++;
+    //         if ((lifeTime - birthTime) % moveSpeed == 0){ // (currenttime - birthtime) % movespeed >= 1
     //             moveForward();
     //         }
     //     }
     // }
 
-    public void attacked(int damage) {
+    public void zombieAttack(int damage) {
         zombieHealth -= damage;
     }   
 
 
-    public void SlowZombie() {
+    public void slowZombie() {
         this.zombieMoveSpeed = zombieMoveSpeed * 2;
     }
 
-    public void UnslowZombie() {
+    public void unslowZombie() {
         isSlowed = false;
         this.zombieMoveSpeed = zombieMoveSpeed / 2;
     }
