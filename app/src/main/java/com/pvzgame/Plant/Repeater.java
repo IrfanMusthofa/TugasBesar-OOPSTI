@@ -13,6 +13,5 @@ public class Repeater extends Plant {
         setPlantAttackRange(-1);
         setPlantAttackDamage(50);
         setPlantAttackSpeed(4);
-    }
-   
+    } 
 }

@@ -14,6 +14,4 @@ public class Snowpea extends Plant {
         setPlantAttackDamage(25);
         setPlantAttackSpeed(4);
     }
-
- 
 }
