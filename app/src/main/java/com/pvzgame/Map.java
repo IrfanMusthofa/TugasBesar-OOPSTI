@@ -69,12 +69,12 @@ public class Map {
 
                     // Protected Area
                     if (tiles[i][j].getIsProtectedArea()) {
-                        System.out.print("*P");
+                        System.out.print("*P|");
                     }
 
                     // Spawn Area
                     if (tiles[i][j].getIsSpawnArea()) {
-                        System.out.print("*S");
+                        System.out.print("*S|");
                     }
 
                     if (!tiles[i][j].getIsProtectedArea() && !tiles[i][j].getIsSpawnArea()) {
@@ -92,10 +92,7 @@ public class Map {
                     // Zombies
                     if (!tiles[i][j].getZombies().isEmpty()) {
                         for (Zombie zombiePrint : tiles[i][j].getZombies()) {
-                            System.out.print("Z." + zombiePrint.getZombieType());
-                            if (tiles[i][j].getZombies().get(tiles[i][j].getZombies().size()) != zombiePrint) {
-                                System.out.print(" ");
-                            }
+                            System.out.print("Z." + zombiePrint.getZombieType() + " ");
                         }
                     }
                 }

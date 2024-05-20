@@ -276,9 +276,9 @@ public class Main {
             } catch (IllegalArgumentException e) {
                 System.out.println("\n===== Command tidak valid, masukkan command yang benar! =====");
             }
-            
         }
     }
+
     public static void gameStart(Scanner scanner) {
    
         // Preparation
@@ -393,39 +393,61 @@ public class Main {
         timeThread.start();
 
         // userThread: user Input
-        new Thread(() -> {
-            map.printMap(); // Initial Map
-            while(gameRunning) {
+        
+        map.printMap(); // Initial Map
+        while(gameRunning) {
+            try {
                 System.out.println("\n*** Game Time: " + gameTime + "s ***");
                 System.out.println("Sun: " + sun.getSunPoints());
                 System.out.println("\nCommand: ");
                 System.out.println("(1)       : Print Map");
                 System.out.println("(2 x y z) : Tanam Plant ke-z dari Deck di baris x dan kolom y");
                 System.out.println("(3 x y)   : Cabut Plant di baris x dan kolom y");
-            //     int userInput = scanner.nextInt();
-            //     try {
-            //         if (userInput == 1) {
-            //             map.printMap();
-            //         } else if (userInput == 2) {
-            //             System.out.println("CEK");
-            //         } else if (userInput == 3) {
-            //             System.out.println("CEK");
-            //         } else {
-            //             throw new Exception("Input tidak valid");
-            //         }
-            //     } catch (Exception e) {
-            //         System.out.println("\n===== Command tidak valid, masukkan command yang benar! =====");
-            //     }
-            // }
-                // thread sleep
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+                int userInput = 0;
+                userInput = scanner.nextInt();
 
-        }).start();
+                if (userInput == 1) {
+                    map.printMap();
+                } else if (userInput == 2){
+                    try {
+                        int x = scanner.nextInt();
+                        int y = scanner.nextInt();
+                        int z = scanner.nextInt();
+                        System.out.println("Ini 2");
+                        // action
+
+                    } catch (InputMismatchException e) {
+                        System.out.println("\n===== Command tidak valid ======");
+                        scanner.nextLine();
+                    } catch (Exception e) {
+                        System.out.println("\n===== Command tidak valid ======");
+                    }
+
+                } else if (userInput == 3) {
+                    try {
+                        int x = scanner.nextInt();
+                        int y = scanner.nextInt();
+                        System.out.println("ini 3");
+                        // action
+
+                    } catch (InputMismatchException e) {
+                        System.out.println("\n===== Command tidak valid ======");
+                        scanner.nextLine();
+                    } catch (Exception e) {
+                        System.out.println("\n===== Command tidak valid ======");
+                    }
+                } else throw new Exception("\n====== Command tidak valid ======"); 
+            } catch (InputMismatchException e) {
+                System.out.println("\n===== Command tidak valid ======");
+                scanner.nextLine();
+            } catch (Exception e) {
+                System.out.println("\n===== Command tidak valid ======");
+            } finally {
+                map.printMap();
+            }
+        
+        }
+
 
     }
 
@@ -447,26 +469,33 @@ public class Main {
                     try {
                         int plantIndex = scanner.nextInt();
                         inventory.pickPlant(inventory.get(plantIndex - 1), deck);
-                    } catch (Exception e) {
+                    } catch (InputMismatchException e) {
                         System.out.println("\n===== Index tidak valid! =====");
                         scanner.nextLine();
+                    } catch (Exception e) {
+                        System.out.println("\n===== Index tidak valid! =====");
+                      
                     }
                 } else if (command == 2) {
                     try {
                         int plantIndex = scanner.nextInt();
                         inventory.removePlant(plantIndex - 1, deck);
-                    } catch (Exception e) {
+                    } catch (InputMismatchException e) {
                         System.out.println("\n===== Index tidak valid! =====");
                         scanner.nextLine();
+                    } catch (Exception e) {
+                        System.out.println("\n===== Index tidak valid! =====");
                     }
                 } else if (command == 3) {
                     try {
                         int plantIndex1 = scanner.nextInt();
                         int plantIndex2 = scanner.nextInt();
                         inventory.swapPlant(plantIndex1 - 1, plantIndex2 - 1, deck);
-                    } catch (Exception e) {
+                    } catch (InputMismatchException e) {
                         System.out.println("\n===== Index tidak valid! =====");
                         scanner.nextLine();
+                    } catch (Exception e) {
+                        System.out.println("\n===== Index tidak valid! =====");
                     }
                 } else {
                     System.out.println("\n=====Command tidak valid, masukkan command yang benar! =====");
