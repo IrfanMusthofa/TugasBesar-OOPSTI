@@ -10,7 +10,6 @@ import com.pvzgame.Plant.*;
 public class Inventory {
     private Map<Plant, Boolean> plantList;
 
-    
     public Inventory() {
         plantList = new LinkedHashMap<>();
 
@@ -31,24 +30,23 @@ public class Inventory {
             if (entry.getKey().getPlantName().equals(plant.getPlantName())) {
                 if (entry.getValue()) {
                     deck.addPlant(plant); // deck penuh dicover di deck class
-                    if (!deck.getIsDeckFull()) entry.setValue(false);
+                    entry.setValue(false);
                     return;
                 } else {
-                    throw new Exception("Plant sudah ditambahkan ke dalam deck");
+                    System.out.println("\n===== Plant tersebut sudah ditambahkan ke dalam deck =====");
                 }
             }
         }
     }
  
     public void removePlant(int index, Deck<?> deck) throws Exception {
-        if (deck.get(index) == null) throw new Exception("Tidak dapat menghapus tanaman yang kosong");
+        if (deck.get(index) == null) throw new Exception("\n===== Tidak dapat menghapus tanaman yang kosong =====");
         else {
             Plant plant = deck.get(index).create(0);
             deck.removePlant(deck.get(index));
             for (Map.Entry<Plant, Boolean> entry : plantList.entrySet()) {
                 if (entry.getKey().getPlantName().equals(plant.getPlantName())) {
                     entry.setValue(true);
-                    
                     return;
                 }
             }
@@ -56,9 +54,9 @@ public class Inventory {
     }
 
     public void swapPlant(int index1, int index2, Deck<?> deck) throws Exception {
-        if (index1 > 6 || index2 > 6) throw new Exception("Index tidak valid");
-        else if (index1 == index2) throw new Exception("Tidak dapat menukar tanaman dengan dirinya sendiri");
-        else if (deck.get(index1) == null || deck.get(index2) == null) throw new Exception ("Tidak dapat menukar tanaman yang kosong");
+        if (index1 > 6 || index2 > 6) throw new Exception("\n===== Index tidak valid =====");
+        else if (index1 == index2) throw new Exception("\n===== Tidak dapat menukar tanaman dengan dirinya sendiri =====");
+        else if (deck.get(index1) == null || deck.get(index2) == null) throw new Exception ("\n===== Tidak dapat menukar tanaman yang kosong =====");
         else {
             deck.swapPlant(index1, index2);
         }
@@ -73,10 +71,8 @@ public class Inventory {
         System.out.println("\nDaftar sisa Plant di Inventory: ");
         int count = 1;
         for (Plant plant : plantList.keySet()) {
-            if (plantList.get(plant)) {
-                System.out.println(count + ". " + plant.getPlantName());
-                count++;
-            }
+            System.out.println(count + ". " + plant.getPlantName());
+            count++;
         }
     }
 }

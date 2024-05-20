@@ -8,9 +8,7 @@ public class Menu {
         System.out.println("2. Help");
         System.out.println("3. Lihat Daftar Tanaman");
         System.out.println("4. Lihat Daftar Zombie");
-        System.out.println("5. Lihat Deck");
-        System.out.println("6. Lihat Inventory");
-        System.out.println("7. Keluar");
+        System.out.println("5. Exit Game");
     }
 
     public static void printPlantList() {
