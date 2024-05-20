@@ -7,7 +7,7 @@ public class ScreenDoorZombie extends Zombie {
         setBirthTime(birthTime);
         setZombieType(8);
         setZombieName("ScreenDoorZombie");
-        setZombieHealth(400);
+        setZombieHealth(300);
         setZombieAttackDamage(100);
         setZombieAttackSpeed(1);
         setZombieMoveSpeed(2);
