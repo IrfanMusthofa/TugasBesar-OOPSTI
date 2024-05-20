@@ -143,20 +143,24 @@ public abstract class Zombie {
     }
 
     // methods
-    // public void zombieAction(Map map, int row, int col){
-    //     if (getZombieHealth() <= 125){ // pengecekan tool dan mengubah status tool
-    //         setHasTool(false);
-    //     }
-    //     if (map.getTile(row, col).getPlant() != null){ // mengecek ada tanaman atau tidak
-    //         map.getTile(row, col).getPlant().plantAttacked(getZombieAttackDamage()*getZombieAttackSpeed());
-    //     } else {
-    //         addCurrentMovePoints(getZombieMoveSpeed()); // movemodifier defaultnya 2 jadinya movetime setiap detik nambah 2
-    //         if (getCurrentMovePoints() <= getMovePoint()){ // apakah sudah waktunya bergerak
-    //             moveForward(map, row, col);
-    //             resetCurrentMovePoints();
-    //         }
-    //     }
-    // }
+    public int zombieCheck(Map map, int row){
+        if (getZombieHealth() <= 125){ // pengecekan tool dan mengubah status tool
+            setHasTool(false);
+        }
+        if (map.getTile(row, col).getPlant() != null){ // mengecek ada tanaman atau tidak
+            return 1;
+            // map.getTile(row, col).getPlant().plantAttacked(getZombieAttackDamage()*getZombieAttackSpeed());
+        } else {
+            addCurrentMovePoints(getZombieMoveSpeed()); // movemodifier defaultnya 2 jadinya movetime setiap detik nambah 2
+            if (getCurrentMovePoints() <= getMovePoint()){ // apakah sudah waktunya bergerak
+                resetCurrentMovePoints();
+                return 2;
+            }
+            else {
+                return 3;
+            }
+        }
+    }
 
     public void zombieAttacked(int damage) {
         zombieHealth -= damage;
@@ -173,15 +177,6 @@ public abstract class Zombie {
         this.zombieMoveSpeed *= 2;
         this.zombieAttackDamage *= 2;
     }
-
-    // public void moveForward(Map map, int row, int col){
-    //     int newCol = col - 1;
-    //     if (newCol >= 0) {
-    //         map.getTile(row, col).removeZombie(this);
-    //         map.getTile(row, newCol).addZombie(this);
-    //         this.col = newCol;
-    //     }
-    // }
 
     public void addCurrentMovePoints(int points) {
        this.currentmovepoints += points;

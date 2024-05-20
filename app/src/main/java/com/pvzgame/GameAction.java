@@ -7,6 +7,7 @@ import com.pvzgame.Zombie.*;
 import com.pvzgame.ZombieFactory.*;
 import com.pvzgame.Plant.*;
 import com.pvzgame.PlantFactory.*;
+import com.pvzgame.*;
 
 public class GameAction implements ZombieEnum {
     
@@ -70,6 +71,26 @@ public class GameAction implements ZombieEnum {
         Zombie.incZombieCount();
     }
 
+    public void zombieMove(Zombie zombie, Map map, int row){
+        Zombie temp = zombie;
+        map.getTile(row, zombie.getCurrentCol()).removeZombie(zombie);
+        map.getTile(row, zombie.getCurrentCol() - 1).addZombie(temp);
+        temp.setCurrentCol(temp.getCurrentCol() - 1);
+    }
+
+    public void zombieAction(Zombie zombie, Map map, int row){
+        switch (zombie.zombieCheck(map, row)){
+            case 1:
+                map.getTile(row, zombie.getCurrentCol()).getPlant().plantAttacked(zombie.getZombieAttackDamage()*zombie.getZombieAttackSpeed());
+                break;
+            case 2:
+                zombieMove(zombie, map, row);
+                break;
+            default:
+                break;
+        }
+    }
+    
     // Zombie Move for each tile
     // public void moveForward(int row, List<Zombie> zombies) {
     //     if (zombies.isEmpty()) return;
