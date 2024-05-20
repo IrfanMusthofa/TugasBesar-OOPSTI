@@ -23,7 +23,8 @@ public class GameAction implements ZombieEnum {
             return;
         }
 
-        Random random = new Random();      
+        // Randomly choose any type of zombie
+        Random random = new Random();     
         if (tile.getWater()) { // Water
             ZombieEnum.aquaticZombie randomAquaticZombie = aquaticZombie[random.nextInt(aquaticZombie.length)];
             switch (randomAquaticZombie) {

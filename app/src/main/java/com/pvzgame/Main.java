@@ -13,7 +13,7 @@ public class Main {
     
     public static int gameTime;
     public static Boolean gameRunning = false;
-    public static Boolean inGame = true;
+    public static Boolean gameOver = false;
 
     public static void main(String[] args) throws Exception {
 
@@ -245,7 +245,7 @@ public class Main {
 //  END OF DRIVER
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to Michale vs Lalapan!\n");
+        System.out.println("Welcome to Michael vs Lalapan!\n");
         Deck deck = new Deck();
         Inventory inventory = new Inventory();
 
@@ -281,30 +281,164 @@ public class Main {
     }
     public static void gameStart(Scanner scanner) {
    
+        // Preparation
         gameRunning = true;
         gameTime = 0;
+        Random random = new Random(); // Random number generator
         Sun sun = Sun.getInstance(); // Starting Sun = 50
         Map map = Map.getInstance();
-        GameAction action = new GameAction();
         Deck<Plant> deck = new Deck<>();
         Inventory inventory = new Inventory();
-
+        GameAction action = new GameAction();
 
         prepareDeck(scanner, deck, inventory);
         System.out.println(" ");
         System.out.println("Game Started!");
+
+        // timeThread: Sun Spawner, Zombie Spawner, GameOver Check, Win Check, gameTime increment
+        Thread timeThread = new Thread(() -> {
+            int sunLastSpawn = 0;
+            Boolean timeHasReset = false;
+
+            while (gameRunning) {
+                try {
+
+                    // Sun Spawner
+                    // Spawn sun randomly every 5 < gameTime < 10
+                    if (gameTime <= 100) {
+                        if (gameTime - sunLastSpawn >= (random.nextInt(6, 10))) {
+                            sun.addSun(50);
+                            sunLastSpawn = gameTime;
+                        }
+                    }
+
+                    // Zombie Spawner
+                    if (gameTime >= 20 && gameTime <= 160) {
+                        for (int i = 0; i < 6; i++) {
+                            if (random.nextFloat() < 0.3) {
+                                action.zombieSpawner(map.getTile(i, 10));
+                            }
+                        }
+                    }
+
+                    // Wave Zombie Spawner
+                    if (gameTime >= 110 && gameTime <= 114) {
+                        for (int i = 0; i < 6; i++) {
+                            if (random.nextFloat() < 0.8) {
+                                action.zombieSpawner(map.getTile(i, 10));
+                            }
+                        }
+                    }
+
+                    // GameOver Check
+                    for (int j = 0; j < 6; j++) {
+                        if (!map.getTile(j, 0).getZombies().isEmpty()) {
+                            gameRunning = false;
+                            gameOver = true;
+                            break;
+                        }
+                    }
+
+                    // Win Check
+                    if (!timeHasReset && gameTime > 160) { // 160-200s
+                        Boolean winCheck = true;
+                        // check if there is no more zombies in map
+                        for(int i = 0; i < 6; i++) {
+                            for (int j = 1; j < 11; j++) {
+                                if (!map.getTile(i, j).getZombies().isEmpty()) {
+                                    winCheck = false;
+                                }
+                            }
+                        }
+                        if (winCheck) {
+                            gameRunning = false;
+     
+                        }
+                    } else if (timeHasReset) {
+                        Boolean winCheck = true;
+                        // check if there is no more zombies in map
+                        for(int i = 0; i < 6; i++) {
+                            for (int j = 1; j < 11; j++) {
+                                if (!map.getTile(i, j).getZombies().isEmpty()) {
+                                    winCheck = false;
+                                }
+                            }
+                        }
+                        if (winCheck) {
+                            gameRunning = false;
+                        }
+                    }
+            
+                    // gameTime increment
+                    Thread.sleep(1000); // 1s sleep
+                    gameTime++;
+
+                    if (gameTime == 200) {
+                        gameTime = 0; // Reset to Day
+                        timeHasReset = true;
+                    }
+
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (gameOver) {
+                System.out.println("\n===== You lose! =====\n===== Game Over! =====");
+            } else {
+                System.out.println("\n===== You win! =====\n===== Game Over! =====");
+            }
+        });
+
+        timeThread.start();
+
+        // userThread: user Input
+        new Thread(() -> {
+            map.printMap(); // Initial Map
+            while(gameRunning) {
+                System.out.println("\n*** Game Time: " + gameTime + "s ***");
+                System.out.println("Sun: " + sun.getSunPoints());
+                System.out.println("\nCommand: ");
+                System.out.println("(1)       : Print Map");
+                System.out.println("(2 x y z) : Tanam Plant ke-z dari Deck di baris x dan kolom y");
+                System.out.println("(3 x y)   : Cabut Plant di baris x dan kolom y");
+            //     int userInput = scanner.nextInt();
+            //     try {
+            //         if (userInput == 1) {
+            //             map.printMap();
+            //         } else if (userInput == 2) {
+            //             System.out.println("CEK");
+            //         } else if (userInput == 3) {
+            //             System.out.println("CEK");
+            //         } else {
+            //             throw new Exception("Input tidak valid");
+            //         }
+            //     } catch (Exception e) {
+            //         System.out.println("\n===== Command tidak valid, masukkan command yang benar! =====");
+            //     }
+            // }
+                // thread sleep
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }).start();
+
     }
 
     public static void prepareDeck(Scanner scanner, Deck<Plant> deck, Inventory inventory) {
-        while (!deck.getIsDeckFull()) { // Deck is not full
+        while (!deck.isDeckFull()) { // Deck is not full
             inventory.printInventory();
             deck.printDeck();
             int command = 0;
 
             System.out.println("Command: ");
-            System.out.println("(1 x) Pilih tanaman ke-x dari inventory untuk dimasukkan ke deck");
-            System.out.println("(2 x) Hapus tanaman ke-x dari deck");
-            System.out.println("(3 x y) Tukar tanaman ke-x dengan tanaman ke-y di deck");
+            System.out.println("(1 x)   : Pilih tanaman ke-x dari inventory untuk dimasukkan ke deck");
+            System.out.println("(2 x)   : Hapus tanaman ke-x dari deck");
+            System.out.println("(3 x y) : Tukar tanaman ke-x dengan tanaman ke-y di deck");
             System.out.println("");
           
             try {
@@ -327,20 +461,8 @@ public class Main {
                     }
                 } else if (command == 3) {
                     try {
-                        if (!scanner.hasNextInt()) {
-                            System.out.println("\n===== Index tidak valid! =====");
-                            scanner.nextLine(); // consume the invalid token
-                            continue; // skip the rest of this iteration
-                        }
-                        int plantIndex1 = scanner.nextInt(); 
-
-                        if (!scanner.hasNextInt()) {
-                            System.out.println("\n===== Index tidak valid! =====");
-                            scanner.nextLine(); // consume the invalid token
-                            continue; // skip the rest of this iteration
-                        }
+                        int plantIndex1 = scanner.nextInt();
                         int plantIndex2 = scanner.nextInt();
-                
                         inventory.swapPlant(plantIndex1 - 1, plantIndex2 - 1, deck);
                     } catch (Exception e) {
                         System.out.println("\n===== Index tidak valid! =====");
@@ -354,7 +476,6 @@ public class Main {
                 System.out.println("\n===== Command tidak valid, masukkan command yang benar! =====");
                 scanner.nextLine();
             }
-
         }
     }
 }

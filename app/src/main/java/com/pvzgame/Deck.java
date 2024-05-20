@@ -26,11 +26,7 @@ public class Deck<T> {
         return currentDeck.get(index);
     }
 
-    public boolean isDeckEmpty(){
-        return currentDeck.isEmpty();
-    }
-
-    public boolean isDeckFull(){
+    public Boolean isDeckFull(){
         return currentDeck.size() == maxSlot;
     }
 
@@ -102,10 +98,6 @@ public class Deck<T> {
             System.out.println(count + ". " + plant.create(0).getPlantName());
             count++;
         }
-    }
-
-    public Boolean getIsDeckFull(){
-        return isDeckFull;
     }
 
     public void setIsDeckFull(Boolean isDeckFull){
