@@ -16,7 +16,7 @@ public class PotatoMine extends Plant {
         setPlantType(5);
         setPlantName("PotatoMine");
         setIsWaterType(false);
-        setSunCost(50);
+        setSunCost(25);
         setPlantHealth(100);
         setPlantCooldown(10);
         setPlantAttackRange(0);

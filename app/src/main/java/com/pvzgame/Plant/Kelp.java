@@ -11,7 +11,7 @@ public class Kelp extends Plant {
         setPlantType(2);
         setPlantName("Kelp");
         setIsWaterType(true);
-        setSunCost(50);
+        setSunCost(25);
         setPlantHealth(100);
         setPlantCooldown(10);
         setPlantAttackRange(0);
