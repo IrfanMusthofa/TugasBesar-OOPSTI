@@ -82,9 +82,16 @@ public class GameAction implements ZombieEnum {
         switch (zombie.zombieCheck(map, row)){
             case 1:
                 map.getTile(row, zombie.getCurrentCol()).getPlant().plantAttacked(zombie.getZombieAttackDamage()*zombie.getZombieAttackSpeed());
+                if (map.getTile(row, zombie.getCurrentCol()).getPlant().getPlantHealth() <= 0){
+                    map.getTile(row, zombie.getCurrentCol()).removePlant();
+                }
                 break;
             case 2:
                 zombieMove(zombie, map, row);
+                break;
+            case 3:
+                zombieMove(zombie, map, row);
+                map.getTile(row, zombie.getCurrentCol()).removePlant();
                 break;
             default:
                 break;
