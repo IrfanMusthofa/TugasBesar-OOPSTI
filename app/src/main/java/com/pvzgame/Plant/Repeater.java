@@ -18,14 +18,14 @@ public class Repeater extends Plant {
         setPlantAttackSpeed(4);
     } 
 
-    public void plantAction(Map map, int row, int cols){ 
+    // public void plantAction(Map map, int row, int cols){ 
         
-        if(inRange(map, row, cols)){
-            Tile zombiePosition = zombiePosition(map, row, cols);
-            List<Zombie> zombiesList =  zombiePosition.getZombies();
-            zombiesList[0].zombieAttacked(getPlantAttackDamage());
-        }
-    }
+    //     if(inRange(map, row, cols)){
+    //         Tile zombiePosition = zombiePosition(map, row, cols);
+    //         List<Zombie> zombiesList =  zombiePosition.getZombies();
+    //         zombiesList[0].zombieAttacked(getPlantAttackDamage());
+    //     }
+    // }
 
     public boolean inRange(Map map, int row, int cols){
         Boolean inRange = false;

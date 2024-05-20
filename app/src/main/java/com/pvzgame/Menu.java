@@ -1,13 +1,8 @@
 package com.pvzgame;
 
-import java.util.List;
-
-import com.pvzgame.Plant.Plant;
-import com.pvzgame.Zombie.Zombie;
-
 public class Menu {
 
-    public void printMenu() {
+    public static void printMenu() {
         System.out.println("\nMenu Command:");
         System.out.println("1. Start Game");
         System.out.println("2. Help");
@@ -18,7 +13,7 @@ public class Menu {
         System.out.println("7. Keluar");
     }
 
-    public void printPlantList() {
+    public static void printPlantList() {
         System.out.println("\nDaftar Tanaman: ");
         System.out.println("1. Peashooter");
         System.out.println("2. Kelp");
@@ -32,7 +27,7 @@ public class Menu {
         System.out.println("10. Repeater");
     }
 
-    public void printZombieList() {
+    public static void printZombieList() {
         System.out.println("\nDaftar Zombie: ");
         System.out.println("1. BucketHeadZombie");
         System.out.println("2. ConeHeadZombie");

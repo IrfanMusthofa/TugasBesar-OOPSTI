@@ -2,13 +2,16 @@ package com.pvzgame;
 import com.pvzgame.Zombie.*;
 
 public class Map {
+    // Singleton
+
     // Attributes
+    private static Map instance = null;
     private Tile[][] tiles;
     private final int rows = 6;
     private final int cols = 11;
     
-    // Constructor
-    public Map() {
+    // Private Constructor
+    private Map() {
         tiles = new Tile[rows][cols];
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
@@ -33,7 +36,12 @@ public class Map {
                 tiles[l][m].setWaterStatus(true);
             }
         }
+    }
 
+    // Singleton Instance and Thread Safety
+    public static Map getInstance() {
+        if (instance == null) instance = new Map();
+        return instance;
     }
 
     // Getter

@@ -96,7 +96,7 @@ public class Deck<T> {
     }
 
     public void printDeck(){
-        System.out.println("\nList Plant di dalam Deck:");
+        System.out.println("\nDaftar Plant di dalam Deck:");
         int count = 1;
         for (PlantFactory<? extends Plant> plant : currentDeck) {
             System.out.println(count + ". " + plant.create(0).getPlantName());
@@ -110,5 +110,9 @@ public class Deck<T> {
 
     public void setIsDeckFull(Boolean isDeckFull){
         this.isDeckFull = isDeckFull;
+    }
+
+    public Plant plantPlant(int index, int birthTime){
+        return currentDeck.get(index).create(birthTime);
     }
 }

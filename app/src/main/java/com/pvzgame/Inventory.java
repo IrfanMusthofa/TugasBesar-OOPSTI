@@ -30,7 +30,7 @@ public class Inventory {
         for (Map.Entry<Plant, Boolean> entry : plantList.entrySet()) {
             if (entry.getKey().getPlantName().equals(plant.getPlantName())) {
                 if (entry.getValue()) {
-                    deck.addPlant(plant);
+                    deck.addPlant(plant); // deck penuh dicover di deck class
                     if (!deck.getIsDeckFull()) entry.setValue(false);
                     return;
                 } else {
@@ -56,7 +56,8 @@ public class Inventory {
     }
 
     public void swapPlant(int index1, int index2, Deck<?> deck) throws Exception {
-        if (index1 == index2) throw new Exception("Tidak dapat menukar tanaman dengan dirinya sendiri");
+        if (index1 > 6 || index2 > 6) throw new Exception("Index tidak valid");
+        else if (index1 == index2) throw new Exception("Tidak dapat menukar tanaman dengan dirinya sendiri");
         else if (deck.get(index1) == null || deck.get(index2) == null) throw new Exception ("Tidak dapat menukar tanaman yang kosong");
         else {
             deck.swapPlant(index1, index2);

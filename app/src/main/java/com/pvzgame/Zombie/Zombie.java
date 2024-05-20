@@ -22,6 +22,8 @@ public abstract class Zombie {
     private Boolean isHidden;
     private Boolean isSlowed;
     private Boolean hasTool;
+
+    private static int zombieCount = 0;
     
     // Constructor
     // Will be implemented by subclasses
@@ -83,6 +85,10 @@ public abstract class Zombie {
         return col;
     }
 
+    public static int getZombieCount() {
+        return zombieCount;
+    }
+
     // Setters
     public void setZombieName(String zombieName) {
         this.zombieName = zombieName;
@@ -132,22 +138,25 @@ public abstract class Zombie {
         this.col = col;
     }
 
-    // methods
-    public void zombieAction(Map map, int row, int col){
-        if (getZombieHealth() <= 125){ // pengecekan tool dan mengubah status tool
-            setHasTool(false);
-        }
-        if (map.getTile(row, col).getPlant() != null){ // mengecek ada tanaman atau tidak
-            map.getTile(row, col).getPlant().plantAttacked(getZombieAttackDamage()*getZombieAttackSpeed());
-        } 
-        else {
-            addCurrentMovePoints(getZombieMoveSpeed()); // movemodifier defaultnya 2 jadinya movetime setiap detik nambah 2
-            if (getCurrentMovePoints() <= getMovePoint()){ // apakah sudah waktunya bergerak
-                moveForward(map, row, col);
-                resetCurrentMovePoints();
-            }
-        }
+    public static void incZombieCount() {
+        zombieCount++;
     }
+
+    // methods
+    // public void zombieAction(Map map, int row, int col){
+    //     if (getZombieHealth() <= 125){ // pengecekan tool dan mengubah status tool
+    //         setHasTool(false);
+    //     }
+    //     if (map.getTile(row, col).getPlant() != null){ // mengecek ada tanaman atau tidak
+    //         map.getTile(row, col).getPlant().plantAttacked(getZombieAttackDamage()*getZombieAttackSpeed());
+    //     } else {
+    //         addCurrentMovePoints(getZombieMoveSpeed()); // movemodifier defaultnya 2 jadinya movetime setiap detik nambah 2
+    //         if (getCurrentMovePoints() <= getMovePoint()){ // apakah sudah waktunya bergerak
+    //             moveForward(map, row, col);
+    //             resetCurrentMovePoints();
+    //         }
+    //     }
+    // }
 
     public void zombieAttacked(int damage) {
         zombieHealth -= damage;
@@ -165,14 +174,14 @@ public abstract class Zombie {
         this.zombieAttackDamage *= 2;
     }
 
-    public void moveForward(Map map, int row, int col){
-        int newCol = col - 1;
-        if (newCol >= 0) {
-            map.getTile(row, col).removeZombie(this);
-            map.getTile(row, newCol).addZombie(this);
-            col = newCol;
-        }
-    }
+    // public void moveForward(Map map, int row, int col){
+    //     int newCol = col - 1;
+    //     if (newCol >= 0) {
+    //         map.getTile(row, col).removeZombie(this);
+    //         map.getTile(row, newCol).addZombie(this);
+    //         this.col = newCol;
+    //     }
+    // }
 
     public void addCurrentMovePoints(int points) {
        this.currentmovepoints += points;

@@ -12,10 +12,12 @@ public class Sun {
         sunPoints = 0;
     }
 
-    // Singleton Instance
+    // Singleton Instance and Thread Safety
     public static Sun getInstance() {
         if (instance == null) {
-            instance = new Sun();
+            synchronized(Sun.class) {
+                if (instance == null) instance = new Sun();
+            }
         }
         return instance;
     }
