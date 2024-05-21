@@ -5,8 +5,8 @@ import java.util.Random;
 
 import com.pvzgame.Zombie.*;
 import com.pvzgame.ZombieFactory.*;
-
-
+import com.pvzgame.Plant.*;
+import com.pvzgame.PlantFactory.*;
 
 public class GameAction implements ZombieEnum {
     
@@ -14,7 +14,7 @@ public class GameAction implements ZombieEnum {
     public ZombieEnum.landZombie[] landZombie = ZombieEnum.landZombie.values();
     public ZombieEnum.aquaticZombie[] aquaticZombie = ZombieEnum.aquaticZombie.values();
 
-
+    // ============= ZOMBIE ACTION ==============
     // Zombie Spawner
     public void zombieSpawner(Tile tile) {
 
@@ -98,41 +98,43 @@ public class GameAction implements ZombieEnum {
         }
     }
     
-    // Zombie Move for each tile
-    // public void moveForward(int row, List<Zombie> zombies) {
-    //     if (zombies.isEmpty()) return;
-    //     if ()
-    //     for(Zombie zombie : zombies) {
-            
-    //     }
-    // }
+
+    // ============= PLANT ACTION ==============
+
     // Plant Spawner
 
-    // public void moveForward(Map map, int row, int col){
-    //     int newCol = col - 1;
-    //     if (newCol >= 0) {
-    //         map.getTile(row, col).removeZombie(this);
-    //         map.getTile(row, newCol).addZombie(this);
-    //         this.col = newCol;
-    //     }
-    // }
 
-    // public void zombieAction(Map map, int row, int col){
-    //     if (getZombieHealth() <= 125){ // pengecekan tool dan mengubah status tool
-    //         setHasTool(false);
-    //     }
-    //     if (map.getTile(row, col).getPlant() != null){ // mengecek ada tanaman atau tidak
-    //         map.getTile(row, col).getPlant().plantAttacked(getZombieAttackDamage()*getZombieAttackSpeed());
-    //     } else {
-    //         addCurrentMovePoints(getZombieMoveSpeed()); // movemodifier defaultnya 2 jadinya movetime setiap detik nambah 2
-    //         if (getCurrentMovePoints() <= getMovePoint()){ // apakah sudah waktunya bergerak
-    //             moveForward(map, row, col);
-    //             resetCurrentMovePoints();
-    //         }
-    //     }
-    // }
-    // public void jumpZombie(int row, int col, Zombie zombie) {
-    //     Tile currentTile = map.getTile(row, col);
+    
+    // Dig
+    public void dig (int row, int col, Map map) {
+        try {
+
+            // Error Handling
+            if (row < 1 || col < 1 || row > 6 || col > 9) {
+                throw new IllegalArgumentException("\n===== Index row atau col tidak valid! =====\n");
+            }
+
+            if (map.getTile(row,col).getPlant() == null) {
+                throw new NullPointerException("\n===== Tidak ada tanaman untuk dicabut! =====\n");
+            }
+
+            // if it's land
+            if (!map.getTile(row, col).getWater()) {
+                map.getTile(row, col).removePlant();
+            } else { // if it's water
+
+                // Check if the tile has lilypad
+
+                // if it's Lilypad
+                if (map.getTile(row, col).getPlant().getPlantName().equals("Lilypad")) {
+                    map.getTile(row, col).removePlant();
+                } else { // if it's another plant on top of the Lilypad
+                    map.getTile(row, col).setPlant(new LilypadFactory().create(0));
+                }
+            }
         
-    // }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 } 

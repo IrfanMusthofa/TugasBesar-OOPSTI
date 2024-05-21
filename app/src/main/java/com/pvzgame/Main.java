@@ -440,8 +440,8 @@ public class Main {
                     try {
                         int x = scanner.nextInt();
                         int y = scanner.nextInt();
-                        System.out.println("ini 3");
-                        // action
+                        System.out.println("\nini 3");
+                        action.dig(x, y, map);
 
                     } catch (InputMismatchException e) {
                         System.out.println("\n===== Command tidak valid ======");
