@@ -102,7 +102,65 @@ public class GameAction implements ZombieEnum {
     // ============= PLANT ACTION ==============
 
     // Plant Spawner
+    public void plant(int row, int col, Plant plant, Map map, Sun sun) {
+        try {   
+            // Error Handling
+            if (plant.getSunCost() > sun.getSunPoints()) { // Sun Point not enough
+                throw new Exception("\n===== Sun Point tidak cukup! =====");
+            }
 
+            if (row < 0 || col < 1 || row > 6 || col > 9) { // Index out of bound
+                throw new IllegalArgumentException("\n===== Index row atau col tidak valid! =====");
+            }
+
+            // LAND PLANT
+            if (!map.getTile(row, col).getWater()) {
+                if (plant.getIsWaterType()) { 
+                    throw new Exception("\n===== Tidak dapat menanam tanaman air di daratan! =====");
+                } else if (map.getTile(row, col).getPlant() != null) {
+                    throw new Exception("\n===== Sudah ada tanaman di tile tersebut! =====");
+                } else if (map.getTile(row, col).getPlant() == null) {
+                    map.getTile(row, col).setPlant(plant);
+                    System.out.println("\n ===== Menanam " + plant.getPlantName() + " di daratan! =====");
+                }
+            }
+
+            // WATER PLANT
+            if (map.getTile(row, col).getWater()) {
+                if (map.getTile(row, col).getPlant() != null) { // ada sesuatu di tile tersebut
+
+                    // Ada lilypad
+                    if (map.getTile(row, col).getPlant().getPlantName().equals("Lilypad")) {
+                        if (plant.getIsWaterType()) {
+                            throw new Exception("\n===== Tidak dapat menanam tanaman air di atas Lilypad! =====");
+                        } else {
+                            map.getTile(row, col).setPlant(plant);
+                            System.out.println("\n===== Menanam " + plant.getPlantName() + " di atas Lilypad! =====");
+                        }
+                    
+                    // Ada tanaman air lain
+                    } else if (!map.getTile(row, col).getPlant().getPlantName().equals("Lilypad")) {
+                        throw new Exception("\n===== Sudah ada tanaman di tile tersebut! =====");
+                    }
+
+                // Tidak ada apa-apa di tile tersebut
+                } else {
+                    if (plant.getIsWaterType()) {
+                        map.getTile(row, col).setPlant(plant);
+                        System.out.println("\n===== Menanam " + plant.getPlantName() + " di air! =====");
+                    } else {
+                        throw new Exception("\n===== Tidak dapat menanam tanaman daratan di air, butuh Lilypad! =====");
+                    }
+                }
+            }
+
+            // Subtract Sun Point
+            sun.subtractSun(plant.getSunCost());
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     
     // Dig
@@ -110,11 +168,11 @@ public class GameAction implements ZombieEnum {
         try {
 
             // Error Handling
-            if (row < 1 || col < 1 || row > 6 || col > 9) {
+            if (row < 0 || col < 1 || row > 5 || col > 9) {
                 throw new IllegalArgumentException("\n===== Index row atau col tidak valid! =====\n");
             }
 
-            if (map.getTile(row,col).getPlant() == null) {
+            if (map.getTile(row, col).getPlant() == null) {
                 throw new NullPointerException("\n===== Tidak ada tanaman untuk dicabut! =====\n");
             }
 
@@ -126,11 +184,11 @@ public class GameAction implements ZombieEnum {
                 // Check if the tile has lilypad
 
                 // if it's Lilypad
-                if (map.getTile(row, col).getPlant().getPlantName().equals("Lilypad")) {
+                if (map.getTile(row, col).getPlant().getIsWaterType()) {
                     map.getTile(row, col).removePlant();
-                } else { // if it's another plant on top of the Lilypad
+                } else {
                     map.getTile(row, col).setPlant(new LilypadFactory().create(0));
-                }
+                } 
             }
         
         } catch (Exception e) {

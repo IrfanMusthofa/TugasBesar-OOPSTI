@@ -62,6 +62,7 @@ public class Map {
     }
 
     public void printMap() {
+        System.out.println("\nMap\n");
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 synchronized(tiles[i][j]) {

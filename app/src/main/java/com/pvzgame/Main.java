@@ -411,10 +411,12 @@ public class Main {
             try {
                 System.out.println("\n*** Game Time: " + gameTime + "s ***");
                 System.out.println("Sun: " + sun.getSunPoints());
+                deck.printDeck();
                 System.out.println("\nCommand: ");
                 System.out.println("(1)       : Print Map");
-                System.out.println("(2 x y z) : Tanam Plant ke-z dari Deck di baris x dan kolom y");
-                System.out.println("(3 x y)   : Cabut Plant di baris x dan kolom y");
+                System.out.println("(2 p x y) : Tanam Plant ke-p dari Deck di baris x dan kolom y");
+                System.out.println("(3 x y)   : Cabut Plant di baris x dan kolom y\n");
+                
                 int userInput = 0;
                 userInput = scanner.nextInt();
 
@@ -423,17 +425,21 @@ public class Main {
                     map.printMap();
                 } else if (userInput == 2){
                     try {
+                        int p = scanner.nextInt();
                         int x = scanner.nextInt();
                         int y = scanner.nextInt();
-                        int z = scanner.nextInt();
-                        System.out.println("Ini 2");
-                        // action
+
+                        if (p < 1 || p > 6) throw new Exception("\n===== Index Plant tidak valid! =====");
+
+                        System.out.println("\nIni 2");
+                        System.out.println("deck.plantPlant(p + 1, gameTime): " + deck.plantPlant(p - 1, gameTime).getPlantName());
+                        action.plant(x - 1, y, deck.plantPlant(p - 1, gameTime), map, sun);
 
                     } catch (InputMismatchException e) {
                         System.out.println("\n===== Command tidak valid ======");
                         scanner.nextLine();
                     } catch (Exception e) {
-                        System.out.println("\n===== Command tidak valid ======");
+                        System.out.println(e.getMessage());
                     }
 
                 } else if (userInput == 3) {
@@ -441,7 +447,7 @@ public class Main {
                         int x = scanner.nextInt();
                         int y = scanner.nextInt();
                         System.out.println("\nini 3");
-                        action.dig(x, y, map);
+                        action.dig(x - 1, y, map);
 
                     } catch (InputMismatchException e) {
                         System.out.println("\n===== Command tidak valid ======");
@@ -456,7 +462,7 @@ public class Main {
             } catch (Exception e) {
                 System.out.println("\n===== Command tidak valid ======");
             } finally {
-                if (!alreadyPrintMap)map.printMap();
+                if (!alreadyPrintMap) map.printMap();
             }
         }
 
