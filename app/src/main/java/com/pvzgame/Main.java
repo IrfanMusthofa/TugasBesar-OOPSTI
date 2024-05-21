@@ -245,7 +245,7 @@ public class Main {
 //  END OF DRIVER
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to Michael vs Lalapan!\n");
+        System.out.println("===== Welcome to Michael vs Lalapan! =====");
         Deck deck = new Deck();
         Inventory inventory = new Inventory();
 
@@ -282,8 +282,6 @@ public class Main {
     public static void gameStart(Scanner scanner) {
    
         // Preparation
-        gameRunning = true;
-        gameTime = 0;
         Random random = new Random(); // Random number generator
         Sun sun = Sun.getInstance(); // Starting Sun = 50
         Map map = Map.getInstance();
@@ -294,6 +292,8 @@ public class Main {
         prepareDeck(scanner, deck, inventory);
         System.out.println(" ");
         System.out.println("Game Started!");
+        gameTime = 0;
+        gameRunning = true;
 
         // timeThread: Sun Spawner, Zombie Spawner, GameOver Check, Win Check, gameTime increment
         Thread timeThread = new Thread(() -> {
@@ -323,11 +323,24 @@ public class Main {
 
                     // Wave Zombie Spawner
                     if (gameTime >= 110 && gameTime <= 114) {
-                        for (int i = 0; i < 6; i++) {
-                            if (random.nextFloat() < 0.8) {
-                                action.zombieSpawner(map.getTile(i, 10));
+                        for (int i = 0; i < 2; i++) {
+                            if (random.nextFloat() < 0.3) {
+                                map.getTile(i, 10).addZombie(new BucketHeadZombieFactory().create(gameTime));
                             }
                         }
+                        
+                        for (int i = 2; i < 4; i++) {
+                            if (random.nextFloat() < 0.3) {
+                                map.getTile(i, 10).addZombie(new DolphinRiderZombieFactory().create(gameTime));
+                            
+                            }
+                        }
+
+                        for (int i = 4; i < 6; i++) {
+                            if (random.nextFloat() < 0.3) {
+                                map.getTile(i, 10).addZombie(new BucketHeadZombieFactory().create(gameTime));
+                            }
+                        }   
                     }
 
                     // GameOver Check
@@ -350,11 +363,9 @@ public class Main {
                                 }
                             }
                         }
-                        if (winCheck) {
-                            gameRunning = false;
-     
-                        }
-                    } else if (timeHasReset) {
+                        if (winCheck) gameRunning = false;
+
+                    } else if (timeHasReset) { // day 2 +++
                         Boolean winCheck = true;
                         // check if there is no more zombies in map
                         for(int i = 0; i < 6; i++) {
@@ -364,9 +375,7 @@ public class Main {
                                 }
                             }
                         }
-                        if (winCheck) {
-                            gameRunning = false;
-                        }
+                        if (winCheck) gameRunning = false;
                     }
             
                     // gameTime increment
@@ -375,7 +384,9 @@ public class Main {
 
                     if (gameTime == 200) {
                         gameTime = 0; // Reset to Day
+                        sunLastSpawn  = 0; // Reset sun spawn time
                         timeHasReset = true;
+                        sunLastSpawn  = 0;
                     }
 
 
@@ -392,10 +403,11 @@ public class Main {
 
         timeThread.start();
 
-        // userThread: user Input
+        // mainThread : userInput
         
-        map.printMap(); // Initial Map
         while(gameRunning) {
+            Boolean alreadyPrintMap = false;
+
             try {
                 System.out.println("\n*** Game Time: " + gameTime + "s ***");
                 System.out.println("Sun: " + sun.getSunPoints());
@@ -407,6 +419,7 @@ public class Main {
                 userInput = scanner.nextInt();
 
                 if (userInput == 1) {
+                    alreadyPrintMap = true;
                     map.printMap();
                 } else if (userInput == 2){
                     try {
@@ -443,13 +456,13 @@ public class Main {
             } catch (Exception e) {
                 System.out.println("\n===== Command tidak valid ======");
             } finally {
-                map.printMap();
+                if (!alreadyPrintMap)map.printMap();
             }
-        
         }
 
-
     }
+
+    // END OF mainThread : userInput
 
     public static void prepareDeck(Scanner scanner, Deck<Plant> deck, Inventory inventory) {
         while (!deck.isDeckFull()) { // Deck is not full
@@ -464,8 +477,10 @@ public class Main {
             System.out.println("");
           
             try {
-                command = scanner.nextInt();
-                if (command == 1) {
+
+                // command available = [1, 2, 3]
+                command = scanner.nextInt(); 
+                if (command == 1) { // x
                     try {
                         int plantIndex = scanner.nextInt();
                         inventory.pickPlant(inventory.get(plantIndex - 1), deck);
@@ -476,7 +491,7 @@ public class Main {
                         System.out.println("\n===== Index tidak valid! =====");
                       
                     }
-                } else if (command == 2) {
+                } else if (command == 2) { // x
                     try {
                         int plantIndex = scanner.nextInt();
                         inventory.removePlant(plantIndex - 1, deck);
@@ -486,7 +501,7 @@ public class Main {
                     } catch (Exception e) {
                         System.out.println("\n===== Index tidak valid! =====");
                     }
-                } else if (command == 3) {
+                } else if (command == 3) { // x y
                     try {
                         int plantIndex1 = scanner.nextInt();
                         int plantIndex2 = scanner.nextInt();

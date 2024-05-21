@@ -32,7 +32,7 @@ public class Map {
 
         // Water Area
         for (int l = 2; l < 4; l++) {
-            for (int m = 1; m < 10; m++) {
+            for (int m = 1; m < cols; m++) {
                 tiles[l][m].setWaterStatus(true);
             }
         }

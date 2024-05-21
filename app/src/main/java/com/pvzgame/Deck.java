@@ -10,7 +10,6 @@ public class Deck<T> {
     // Attributes
     private List<PlantFactory<? extends Plant>> currentDeck;
     private final int maxSlot = 6;
-    private Boolean isDeckFull = false;
 
     // Constructor
     public Deck(){
@@ -32,7 +31,7 @@ public class Deck<T> {
 
     public void addPlant(Plant plant){
         try {
-            if (!isDeckFull()) {
+            if (!this.isDeckFull()) {
                 switch (plant.getPlantName()) {
                     case "Jalapeno":
                         currentDeck.add(new JalapenoFactory());
@@ -68,7 +67,6 @@ public class Deck<T> {
                         break;
                 }
             } else {
-                isDeckFull = true;
                 System.out.println("Deck sudah penuh!");
             }
         } catch (Exception E) {
@@ -98,10 +96,6 @@ public class Deck<T> {
             System.out.println(count + ". " + plant.create(0).getPlantName());
             count++;
         }
-    }
-
-    public void setIsDeckFull(Boolean isDeckFull){
-        this.isDeckFull = isDeckFull;
     }
 
     public Plant plantPlant(int index, int birthTime){
