@@ -14,10 +14,8 @@ public abstract class Zombie {
     private int zombieAttackDamage;
     private int zombieAttackSpeed;
     private int zombieMoveSpeed; // berapa point yang ditambahkan setiap detik
-    private int currentmovepoints; // berapa point yang sudah ditambahkan
-    private int movePoint = 20; // berapa point yang dibutuhkan untuk bergerak
-    
-    private int col;
+    private int currentMovePoints; // berapa point yang sudah ditambahkan
+    private final int movePoint = 20; // berapa point yang dibutuhkan untuk bergerak
 
     private Boolean isHidden;
     private Boolean isSlowed;
@@ -62,7 +60,7 @@ public abstract class Zombie {
     }
 
     public int getCurrentMovePoints() {
-        return currentmovepoints;
+        return currentMovePoints;
     }
 
     public int getMovePoint() {
@@ -79,10 +77,6 @@ public abstract class Zombie {
 
     public boolean getHasTool() {
         return hasTool;
-    }
-
-    public int getCurrentCol() {
-        return col;
     }
 
     public static int getZombieCount() {
@@ -134,29 +128,25 @@ public abstract class Zombie {
         this.hasTool = hasTool;
     }
 
-    public void setCurrentCol(int col) {
-        this.col = col;
-    }
-
     public static void incZombieCount() {
         zombieCount++;
     }
 
     // methods
-    public int zombieCheck(Map map, int row){
+    public int zombieCheck(Map map, int row, int col){
         if (getZombieHealth() <= 125){ // pengecekan tool dan mengubah status tool
-            setHasTool(false);
+            this.setHasTool(false);
         }
+        
         if (map.getTile(row, col).getPlant() != null){ // mengecek ada tanaman atau tidak
-            return 1;
-            // map.getTile(row, col).getPlant().plantAttacked(getZombieAttackDamage()*getZombieAttackSpeed());
-        } else {
+            return 1; 
+
+        } else { // Tidak ada tanaman, siap jalan
             addCurrentMovePoints(getZombieMoveSpeed()); // movemodifier defaultnya 2 jadinya movetime setiap detik nambah 2
-            if (getCurrentMovePoints() <= getMovePoint()){ // apakah sudah waktunya bergerak
+            if (getCurrentMovePoints() >= getMovePoint()){ // apakah sudah waktunya bergerak
                 resetCurrentMovePoints();
                 return 2;
-            }
-            else {
+            } else {
                 return 0;
             }
         }
@@ -179,10 +169,10 @@ public abstract class Zombie {
     }
 
     public void addCurrentMovePoints(int points) {
-       this.currentmovepoints += points;
+       this.currentMovePoints += points;
     }
 
     public void resetCurrentMovePoints() {
-        this.currentmovepoints = 0;
+        this.currentMovePoints = 0;
     }
 }

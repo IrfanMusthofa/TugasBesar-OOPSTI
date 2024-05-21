@@ -20,8 +20,6 @@ public class Main {
         // Essentials
         Scanner scanner = new Scanner(System.in);
         System.out.println("===== Welcome to Michael vs Lalapan! =====");
-        Deck deck = new Deck();
-        Inventory inventory = new Inventory();
 
         Menu.printMenu();
         int command = 0;
@@ -125,36 +123,38 @@ public class Main {
                             break;
                         }
                     }
-
+                    if (!gameOver) {
                     // Win Check
-                    if (!timeHasReset && gameTime > 160) { // 160-200s
-                        Boolean winCheck = true;
-                        // check if there is no more zombies in map
-                        for(int i = 0; i < 6; i++) {
-                            for (int j = 1; j < 11; j++) {
-                                if (!map.getTile(i, j).getZombies().isEmpty()) {
-                                    winCheck = false;
+                        if (!timeHasReset && gameTime > 160) { // 160-200s
+                            Boolean winCheck = true;
+                            // check if there is no more zombies in map
+                            for(int i = 0; i < 6; i++) {
+                                for (int j = 1; j < 11; j++) {
+                                    if (!map.getTile(i, j).getZombies().isEmpty()) {
+                                        winCheck = false;
+                                    }
                                 }
                             }
-                        }
-                        if (winCheck) gameRunning = false;
+                            if(winCheck) gameRunning = false;
 
-                    } else if (timeHasReset) { // day 2 +++
-                        Boolean winCheck = true;
-                        // check if there is no more zombies in map
-                        for(int i = 0; i < 6; i++) {
-                            for (int j = 1; j < 11; j++) {
-                                if (!map.getTile(i, j).getZombies().isEmpty()) {
-                                    winCheck = false;
+                        } else if (timeHasReset) { // day 2 +++
+                            Boolean winCheck = true;
+                            // check if there is no more zombies in map
+                            for(int i = 0; i < 6; i++) {
+                                for (int j = 1; j < 11; j++) {
+                                    if (!map.getTile(i, j).getZombies().isEmpty()) {
+                                        winCheck = false;
+                                    }
                                 }
                             }
+                            if(winCheck) gameRunning = false;
                         }
-                        if (winCheck) gameRunning = false;
                     }
-            
                     // gameTime increment
-                    Thread.sleep(1000); // 1s sleep
-                    gameTime++;
+                    if (!gameOver) {
+                        Thread.sleep(1000); // 1s sleep
+                        gameTime++;
+                    }
 
                     if (gameTime == 200) {
                         gameTime = 0; // Reset to Day
@@ -169,19 +169,29 @@ public class Main {
                 }
             }
             if (gameOver) {
-                System.out.println("\n===== You lose! =====\n===== Game Over! =====");
+                System.out.println("\n===== Michael kalah euy... =====\n===== Game Over! =====");
             } else {
-                System.out.println("\n===== You win! =====\n===== Game Over! =====");
+                System.out.println("\n===== Michael Tyson emang jago! =====\n===== Game Over! =====");
             }
         });
 
         timeThread.start();
         // END OF timeThread: Sun Spawner, Zombie Spawner, GameOver Check, Win Check, gameTime increment
 
-        // Thread gameThread = new Thread(() -> {
-
-
-        // });
+        Thread gameThread1 = new Thread(() -> {
+            while(gameRunning) {
+                try {
+                    for (int i = 0; i < 11; i++) {
+                        for (Zombie zombie : map.getTile(0, i).getZombies()) {
+                            action.zombieAction(zombie, map, 0, i);
+                        }
+                    }
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
 
 

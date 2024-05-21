@@ -20,7 +20,7 @@ public class DolphinRiderZombie extends Zombie {
     }
 
     @Override
-    public int zombieCheck(Map map, int row){
+    public int zombieCheck(Map map, int row, int col){
         if (getZombieHealth() <= 125){ // pengecekan tool dan mengubah status tool
             setHasTool(false);
             if (!getHasTool()){
@@ -28,7 +28,7 @@ public class DolphinRiderZombie extends Zombie {
             }
         }
         
-        if (map.getTile(row, getCurrentCol()).getPlant() != null){ // mengecek ada tanaman atau tidak
+        if (map.getTile(row, col).getPlant() != null){ // mengecek ada tanaman atau tidak
             if (getHasTool()){ // jika punya tool
                 setHasTool(false);
                 resetCurrentMovePoints();
@@ -40,7 +40,7 @@ public class DolphinRiderZombie extends Zombie {
         } 
         else {
             addCurrentMovePoints(getZombieMoveSpeed()); // movemodifier defaultnya 2 jadinya movetime setiap detik nambah 2
-            if (getCurrentMovePoints() <= getMovePoint()){ // apakah sudah waktunya bergerak
+            if (getCurrentMovePoints() >= getMovePoint()){ // apakah sudah waktunya bergerak
                 resetCurrentMovePoints();
                 return 2;
             }

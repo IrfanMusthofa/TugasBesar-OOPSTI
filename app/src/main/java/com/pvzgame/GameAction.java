@@ -71,29 +71,30 @@ public class GameAction implements ZombieEnum {
         Zombie.incZombieCount();
     }
 
-    public void zombieMove(Zombie zombie, Map map, int row){
-        Zombie temp = zombie;
-        map.getTile(row, zombie.getCurrentCol()).removeZombie(zombie);
-        map.getTile(row, zombie.getCurrentCol() - 1).addZombie(temp);
-        temp.setCurrentCol(temp.getCurrentCol() - 1);
+    public void zombieMove(Zombie zombie, Map map, int row, int col){ // Immediately normally move
+        if (col != 0) {
+            map.getTile(row, col - 1).addZombie(zombie);
+            map.getTile(row, col).removeZombie(zombie);
+        }
     }
 
-    public void zombieAction(Zombie zombie, Map map, int row){
-        switch (zombie.zombieCheck(map, row)){
+    public void zombieAction(Zombie zombie, Map map, int row, int col){
+        switch (zombie.zombieCheck(map, row, col)){
             case 1:
-                map.getTile(row, zombie.getCurrentCol()).getPlant().plantAttacked(zombie.getZombieAttackDamage()*zombie.getZombieAttackSpeed());
-                if (map.getTile(row, zombie.getCurrentCol()).getPlant().getPlantHealth() <= 0){
-                    map.getTile(row, zombie.getCurrentCol()).removePlant();
+                // zombieAttackdamage * zombieAttackSpeed
+                map.getTile(row, col).getPlant().plantAttacked(zombie.getZombieAttackDamage()*zombie.getZombieAttackSpeed());
+                if (map.getTile(row, col).getPlant().getPlantHealth() <= 0){ // cek apakah plant sudah mati terbunuh
+                    map.getTile(row, col).removePlant();
                 }
                 break;
             case 2:
-                zombieMove(zombie, map, row);
+                zombieMove(zombie, map, row, col);
                 break;
             case 3:
-                zombieMove(zombie, map, row);
-                map.getTile(row, zombie.getCurrentCol()).removePlant();
+                zombieMove(zombie, map, row, col);
+                map.getTile(row, col).removePlant();
                 break;
-            default:
+            default: 
                 break;
         }
     }
@@ -167,7 +168,7 @@ public class GameAction implements ZombieEnum {
 
     
     // Dig
-    public void dig (int row, int col, Map map) {
+    public void dig(int row, int col, Map map) {
         try {
 
             // Error Handling
