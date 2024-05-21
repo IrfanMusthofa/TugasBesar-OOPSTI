@@ -1,7 +1,7 @@
 package com.pvzgame.Plant;
 import com.pvzgame.Tile;
 import com.pvzgame.Map;
-import com.pvzgame.Zombie.Zombie;
+
 public class Peashooter extends Plant {
 
     // Constructor

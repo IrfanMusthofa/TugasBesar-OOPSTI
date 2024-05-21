@@ -97,7 +97,7 @@ public class GameAction implements ZombieEnum {
                 break;
         }
     }
-    
+
 
     // ============= PLANT ACTION ==============
 
@@ -134,6 +134,7 @@ public class GameAction implements ZombieEnum {
                         if (plant.getIsWaterType()) {
                             throw new Exception("\n===== Tidak dapat menanam tanaman air di atas Lilypad! =====");
                         } else {
+                            plant.setPlantHealth(plant.getPlantHealth() + 100);
                             map.getTile(row, col).setPlant(plant);
                             System.out.println("\n===== Menanam " + plant.getPlantName() + " di atas Lilypad! =====");
                         }
@@ -156,6 +157,8 @@ public class GameAction implements ZombieEnum {
 
             // Subtract Sun Point
             sun.subtractSun(plant.getSunCost());
+            // System.out.println("Plant: " + plant.getPlantName() + "Sun berkurang: " + plant.getSunCost());
+            // System.out.println("PlantTime: " + plant.getBirthTime());
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
