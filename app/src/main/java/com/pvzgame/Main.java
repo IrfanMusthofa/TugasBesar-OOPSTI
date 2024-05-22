@@ -14,6 +14,7 @@ public class Main {
     public static int gameTime;
     public static Boolean gameRunning = false;
     public static Boolean gameOver = false;
+    public static Boolean timeHasReset = false; // to check day 2+++
 
     public static void main(String[] args) throws Exception {
 
@@ -70,7 +71,6 @@ public class Main {
         // START OF timeThread: Sun Spawner, Zombie Spawner, GameOver Check, Win Check, gameTime increment
         Thread timeThread = new Thread(() -> {
             int sunLastSpawn = 0;
-            Boolean timeHasReset = false;
 
             while (gameRunning) {
                 try {
@@ -79,7 +79,7 @@ public class Main {
                     // Spawn sun randomly every 5 < gameTime < 10
                     if (gameTime <= 100) {
                         if (gameTime - sunLastSpawn >= (random.nextInt(6, 10))) {
-                            sun.addSun(50);
+                            sun.addSun(25);
                             sunLastSpawn = gameTime;
                         }
                     }
@@ -103,7 +103,7 @@ public class Main {
                         
                         for (int i = 2; i < 4; i++) {
                             if (random.nextFloat() < 0.3) {
-                                map.getTile(i, 10).addZombie(new DolphinRiderZombieFactory().create(gameTime));
+                                map.getTile(i, 10).addZombie(new DuckyTubeZombieFactory().create(gameTime));
                             
                             }
                         }
@@ -201,9 +201,11 @@ public class Main {
             Boolean alreadyPrintMap = false;
 
             try {
-                System.out.println("\n*** Game Time: " + gameTime + "s ***");
-                System.out.println("Sun: " + sun.getSunPoints());
-                deck.printDeck();
+                if (!timeHasReset) System.out.println("\n*** Game Time: " + gameTime + "s ***");
+                else System.out.println("\n*** Game Time: " + (gameTime+200) + " ***");
+
+                // Sun Print
+                System.out.println("Sun: " + (sun.getSunPoints()));
                 System.out.println("\nCommand: ");
                 System.out.println("(1)       : Print Map");
                 System.out.println("(2 p x y) : Tanam Plant ke-p dari Deck di baris x dan kolom y");
