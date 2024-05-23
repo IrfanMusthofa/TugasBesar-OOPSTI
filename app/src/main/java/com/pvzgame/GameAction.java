@@ -100,7 +100,7 @@ public class GameAction implements ZombieEnum {
 
 
     // ============= PLANT ACTION ==============
-    public void plantAction(Map map, int row, int col, Plant plant){
+    public void plantAction(Map map, int row, int col, Plant plant, Sun sun){
 
         // jalapeno: remove entire zombie in a row
         if (plant.getPlantType() == 1) {
@@ -160,7 +160,7 @@ public class GameAction implements ZombieEnum {
             }
         }
 
-        //squash
+        // squash
         else if (plant.getPlantType() == 8){
             if (map.getTile(row, col-1).getZombies() != null){
                 map.getTile(row, col-1).removeAllZombies();
@@ -173,6 +173,15 @@ public class GameAction implements ZombieEnum {
             else if (map.getTile(row, col+1).getZombies() != null){
                 map.getTile(row, col+1).removeAllZombies();
                 map.getTile(row, col).removePlant();
+            }
+        }
+
+        // sunflower
+        else if (plant.getPlantType() == 9) {
+            // add 25 sun every 3 seconds
+            if (plant.timeToAttack() && Main.gameTime <= 100) {
+                sun.addSun(25);
+                System.out.println("nambah sun 25");
             }
         }
     }

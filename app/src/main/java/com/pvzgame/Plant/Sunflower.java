@@ -13,7 +13,7 @@ public class Sunflower extends Plant {
         setPlantCooldown(10);
         setPlantAttackRange(0);
         setPlantAttackDamage(0);
-        setPlantAttackSpeed(0);
+        setPlantAttackSpeed(3);
         setPlantAttackPoints(0);
     }
 }

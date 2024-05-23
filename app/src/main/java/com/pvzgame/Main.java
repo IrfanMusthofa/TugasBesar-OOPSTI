@@ -94,7 +94,7 @@ public class Main {
                     }
 
                     // Wave Zombie Spawner
-                    if (gameTime >= 110 && gameTime <= 114 && !timeHasReset) {
+                    if (gameTime >= 110 && gameTime <= 111 && !timeHasReset) {
                         for (int i = 0; i < 2; i++) {
                             if (random.nextFloat() < 0.3) {
                                 map.getTile(i, 10).addZombie(new BucketHeadZombieFactory().create(gameTime));
@@ -188,7 +188,7 @@ public class Main {
                             }
                         }
                         if (map.getTile(0, i).getPlant() != null) {
-                            action.plantAction(map, 0, i, map.getTile(0, i).getPlant());
+                            action.plantAction(map, 0, i, map.getTile(0, i).getPlant(), sun);
                             
                         }
                     }
@@ -209,7 +209,7 @@ public class Main {
                             }
                         }
                         if (map.getTile(1, i).getPlant() != null) {
-                            action.plantAction(map, 1, i, map.getTile(1, i).getPlant());
+                            action.plantAction(map, 1, i, map.getTile(1, i).getPlant(), sun);
                             
                         }
                     }
@@ -230,7 +230,7 @@ public class Main {
                             }
                         }
                         if (map.getTile(2, i).getPlant() != null) {
-                            action.plantAction(map, 2, i, map.getTile(2, i).getPlant());
+                            action.plantAction(map, 2, i, map.getTile(2, i).getPlant(), sun);
                             
                         }
                     }
@@ -251,7 +251,7 @@ public class Main {
                             }
                         }
                         if (map.getTile(3, i).getPlant() != null) {
-                            action.plantAction(map, 3, i, map.getTile(3, i).getPlant());
+                            action.plantAction(map, 3, i, map.getTile(3, i).getPlant(), sun);
                             
                         }
                     }
@@ -272,7 +272,7 @@ public class Main {
                             }
                         }
                         if (map.getTile(4, i).getPlant() != null) {
-                            action.plantAction(map, 4, i, map.getTile(4, i).getPlant());
+                            action.plantAction(map, 4, i, map.getTile(4, i).getPlant(), sun);
                             
                         }
                     }
@@ -293,7 +293,7 @@ public class Main {
                             }
                         }
                         if (map.getTile(5, i).getPlant() != null) {
-                            action.plantAction(map, 5, i, map.getTile(5, i).getPlant());
+                            action.plantAction(map, 5, i, map.getTile(5, i).getPlant(), sun);
                             
                         }
                     }
@@ -369,6 +369,7 @@ public class Main {
                 System.out.println("\n===== Command tidak valid ======");
             } finally {
                 if (!alreadyPrintMap) map.printMap();
+                deck.printDeck();
             }
         }
 
