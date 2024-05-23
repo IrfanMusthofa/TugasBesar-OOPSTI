@@ -21,8 +21,10 @@ public class ScreenDoorZombie extends Zombie {
     @Override
     public void slowZombie() {
         if (!getHasTool()){
+            setIsSlowed(true);
             setZombieMoveSpeed(getZombieMoveSpeed()/2);
             setZombieAttackSpeed(getZombieAttackDamage()/2);
+            resetslowpoints();
         }
     }
 }

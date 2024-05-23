@@ -16,6 +16,7 @@ public abstract class Zombie {
     private int zombieMoveSpeed; // berapa point yang ditambahkan setiap detik
     private int currentMovePoints; // berapa point yang sudah ditambahkan
     private final int movePoint = 20; // berapa point yang dibutuhkan untuk bergerak
+    private int slowpoints = 0; // berapa point yang sudah ditambahkan
 
     private Boolean isHidden;
     private Boolean isSlowed;
@@ -79,6 +80,10 @@ public abstract class Zombie {
         return hasTool;
     }
 
+    public int getSlowpoints() {
+        return slowpoints;
+    }
+
     public static int getZombieCount() {
         return zombieCount;
     }
@@ -128,16 +133,35 @@ public abstract class Zombie {
         this.hasTool = hasTool;
     }
 
+    public void addslowpoints() {
+        this.slowpoints ++;
+    }
+
+    public void resetslowpoints() {
+        this.slowpoints = 0;
+    }
+
     public static void incZombieCount() {
         zombieCount++;
     }
 
     // methods
     public int zombieCheck(Map map, int row, int col){
+
+        // slow mechanism
+        if (getSlowpoints() >= 3){ // pengecekan apakah sudah waktunya unslow
+            unslowZombie();
+        }
+        else if (getIsSlowed()){ // counter slow zombie
+            addslowpoints();
+        }
+
+        // tool check
         if (getZombieHealth() <= 125){ // pengecekan tool dan mengubah status tool
             this.setHasTool(false);
         }
         
+        // move mechanism
         if (map.getTile(row, col).getPlant() != null){ // mengecek ada tanaman atau tidak
             return 1; 
 
@@ -160,6 +184,7 @@ public abstract class Zombie {
         isSlowed = true;
         this.zombieMoveSpeed /= 2;
         this.zombieAttackDamage /= 2;
+        this.slowpoints = 0;
     }
 
     public void unslowZombie() {

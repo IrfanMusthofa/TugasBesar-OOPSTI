@@ -21,6 +21,17 @@ public class NewsPaperZombie extends Zombie {
 
     @Override
     public int zombieCheck(Map map, int row, int col){
+
+
+        // slow mechanism
+        if (getSlowpoints() >= 3){ // pengecekan apakah sudah waktunya unslow
+            unslowZombie();
+        }
+        else if (getIsSlowed()){ // counter slow zombie
+            addslowpoints();
+        }
+
+        // tool check
         if (getZombieHealth() <= 125){ // pengecekan tool dan mengubah status tool
             setHasTool(false);
             if (!getHasTool()){
@@ -28,6 +39,8 @@ public class NewsPaperZombie extends Zombie {
                 setZombieAttackSpeed(2);
             }
         }
+
+        // move mechanism
         if (map.getTile(row, col).getPlant() != null){ // mengecek ada tanaman atau tidak
             return 1;
         } 
