@@ -182,10 +182,15 @@ public class Main {
             while(gameRunning) {
                 try {
                     for (int i = 0; i < 11; i++) { // all col 
-                        for (Zombie zombie : map.getTile(0, i).getZombies()) {
-                            action.zombieAction(zombie, map, 0, i);
+                        if (!map.getTile(0, i).getZombies().isEmpty()) {
+                            for (Zombie zombie : map.getTile(0, i).getZombies()) {
+                                action.zombieAction(zombie, map, 0, i);
+                            }
                         }
-                        action.plantAction(map, 0, i, map.getTile(0, i).getPlant());
+                        if (map.getTile(0, i).getPlant() != null) {
+                            action.plantAction(map, 0, i, map.getTile(0, i).getPlant());
+                            
+                        }
                     }
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -198,10 +203,15 @@ public class Main {
             while(gameRunning) {
                 try {
                     for (int i = 0; i < 11; i++) { // all col 
-                        for (Zombie zombie : map.getTile(1, i).getZombies()) {
-                            action.zombieAction(zombie, map, 1, i);
+                        if (!map.getTile(1, i).getZombies().isEmpty()) {
+                            for (Zombie zombie : map.getTile(1, i).getZombies()) {
+                                action.zombieAction(zombie, map, 1, i);
+                            }
                         }
-                        action.plantAction(map, 1, i, map.getTile(1, i).getPlant());
+                        if (map.getTile(1, i).getPlant() != null) {
+                            action.plantAction(map, 1, i, map.getTile(1, i).getPlant());
+                            
+                        }
                     }
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -214,10 +224,15 @@ public class Main {
             while(gameRunning) {
                 try {
                     for (int i = 0; i < 11; i++) { // all col 
-                        for (Zombie zombie : map.getTile(2, i).getZombies()) {
-                            action.zombieAction(zombie, map, 2, i);
+                        if (!map.getTile(2, i).getZombies().isEmpty()) {
+                            for (Zombie zombie : map.getTile(2, i).getZombies()) {
+                                action.zombieAction(zombie, map, 2, i);
+                            }
                         }
-                        action.plantAction(map, 2, i, map.getTile(2, i).getPlant());
+                        if (map.getTile(2, i).getPlant() != null) {
+                            action.plantAction(map, 2, i, map.getTile(2, i).getPlant());
+                            
+                        }
                     }
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -230,10 +245,15 @@ public class Main {
             while(gameRunning) {
                 try {
                     for (int i = 0; i < 11; i++) { // all col 
-                        for (Zombie zombie : map.getTile(3, i).getZombies()) {
-                            action.zombieAction(zombie, map, 3, i);
+                        if (!map.getTile(3, i).getZombies().isEmpty()) {
+                            for (Zombie zombie : map.getTile(3, i).getZombies()) {
+                                action.zombieAction(zombie, map, 3, i);
+                            }
                         }
-                        action.plantAction(map, 3, i, map.getTile(3, i).getPlant());
+                        if (map.getTile(3, i).getPlant() != null) {
+                            action.plantAction(map, 3, i, map.getTile(3, i).getPlant());
+                            
+                        }
                     }
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -246,10 +266,15 @@ public class Main {
             while(gameRunning) {
                 try {
                     for (int i = 0; i < 11; i++) { // all col 
-                        for (Zombie zombie : map.getTile(4, i).getZombies()) {
-                            action.zombieAction(zombie, map, 4, i);
+                        if (!map.getTile(4, i).getZombies().isEmpty()) {
+                            for (Zombie zombie : map.getTile(4, i).getZombies()) {
+                                action.zombieAction(zombie, map, 4, i);
+                            }
                         }
-                        action.plantAction(map, 4, i, map.getTile(4, i).getPlant());
+                        if (map.getTile(4, i).getPlant() != null) {
+                            action.plantAction(map, 4, i, map.getTile(4, i).getPlant());
+                            
+                        }
                     }
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -262,10 +287,15 @@ public class Main {
             while(gameRunning) {
                 try {
                     for (int i = 0; i < 11; i++) { // all col 
-                        for (Zombie zombie : map.getTile(5, i).getZombies()) {
-                            action.zombieAction(zombie, map, 5, i);
+                        if (!map.getTile(5, i).getZombies().isEmpty()) {
+                            for (Zombie zombie : map.getTile(5, i).getZombies()) {
+                                action.zombieAction(zombie, map, 5, i);
+                            }
                         }
-                        action.plantAction(map, 5, i, map.getTile(4, 5).getPlant());
+                        if (map.getTile(5, i).getPlant() != null) {
+                            action.plantAction(map, 5, i, map.getTile(5, i).getPlant());
+                            
+                        }
                     }
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -280,7 +310,8 @@ public class Main {
         gameThread3.start();
         gameThread4.start();
         gameThread5.start();
-        
+        gameThread6.start();
+
         // START OF mainThread : userInput
         while(gameRunning) {
             Boolean alreadyPrintMap = false;

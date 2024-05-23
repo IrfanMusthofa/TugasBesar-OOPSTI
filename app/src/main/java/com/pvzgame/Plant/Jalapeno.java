@@ -18,13 +18,4 @@ public class Jalapeno extends Plant {
         setPlantAttackSpeed(0);
         setPlantAttackPoints(0);
     }
-
-    //method
-    //remove all zombies di row itu
-    // public void plantAction(Map map, int row, int cols){ 
-    //     Tile[][] tiles = map.getTiles();
-    //     for (int i=1;i<11;i++){
-    //         tiles[row][i].removeAllZombies();
-    //     }
-    // }
 }
