@@ -45,12 +45,12 @@ public class PotatoMine extends Plant {
 
     // }
 
-    public void plantAction(Map map, int row, int cols){ 
-        Tile currentTile = map.getTile(row, cols);
-        if (currentTile.getZombies()!= null){ // ada zombie
+    // public void plantAction(Map map, int row, int cols){ 
+    //     Tile currentTile = map.getTile(row, cols);
+    //     if (currentTile.getZombies()!= null){ // ada zombie
             
-            currentTile.removeAllZombies();// menghilangkan semua zombie di current tile
-        }
+    //         currentTile.removeAllZombies();// menghilangkan semua zombie di current tile
+    //     }
         
-    }
+    // }
 }

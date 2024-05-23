@@ -1,6 +1,6 @@
 package com.pvzgame.Plant;
-import com.pvzgame.Tile;
-import com.pvzgame.Map;
+// import com.pvzgame.Tile;
+// import com.pvzgame.Map;
 public class Jalapeno extends Plant {
     // Immediately kills all zombies in the row (land)
     // Immediately sacrifices itself
@@ -21,10 +21,10 @@ public class Jalapeno extends Plant {
 
     //method
     //remove all zombies di row itu
-    public void plantAction(Map map, int row, int cols){ 
-        Tile[][] tiles = map.getTiles();
-        for (int i=1;i<11;i++){
-            tiles[row][i].removeAllZombies();
-        }
-    }
+    // public void plantAction(Map map, int row, int cols){ 
+    //     Tile[][] tiles = map.getTiles();
+    //     for (int i=1;i<11;i++){
+    //         tiles[row][i].removeAllZombies();
+    //     }
+    // }
 }

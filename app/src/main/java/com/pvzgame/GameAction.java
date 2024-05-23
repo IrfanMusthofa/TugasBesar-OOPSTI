@@ -152,8 +152,16 @@ public class GameAction implements ZombieEnum {
 
         //squash
         else if (plant.getPlantType() == 8){
-            if (map.getTile(row, col).getZombies() != null){
+            if (map.getTile(row, col-1).getZombies() != null){
+                map.getTile(row, col-1).removeAllZombies();
+                map.getTile(row, col).removePlant();
+            }
+            else if (map.getTile(row, col).getZombies() != null){
                 map.getTile(row, col).removeAllZombies();
+                map.getTile(row, col).removePlant();
+            }
+            else if (map.getTile(row, col+1).getZombies() != null){
+                map.getTile(row, col+1).removeAllZombies();
                 map.getTile(row, col).removePlant();
             }
         }
