@@ -11,7 +11,7 @@ public class ConeHeadZombie extends Zombie {
         setZombieAttackDamage(100);
         setZombieAttackSpeed(1);
         setZombieMoveSpeed(2);
-
+        setCurrentMovePoints(20);
         setIsAquatic(false);
         setIsHidden(false);
         setIsSlowed(false);

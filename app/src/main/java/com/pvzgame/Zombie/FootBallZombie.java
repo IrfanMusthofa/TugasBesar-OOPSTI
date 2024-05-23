@@ -11,7 +11,7 @@ public class FootBallZombie extends Zombie {
         setZombieAttackDamage(100);
         setZombieAttackSpeed(2);
         setZombieMoveSpeed(4);
-
+        setCurrentMovePoints(20);
         setIsAquatic(false);
         setIsHidden(false);
         setIsSlowed(false);

@@ -11,7 +11,7 @@ public class ScreenDoorZombie extends Zombie {
         setZombieAttackDamage(100);
         setZombieAttackSpeed(1);
         setZombieMoveSpeed(2);
-
+        setCurrentMovePoints(20);
         setIsAquatic(false);
         setIsHidden(false);
         setIsSlowed(false);
@@ -24,7 +24,7 @@ public class ScreenDoorZombie extends Zombie {
             setIsSlowed(true);
             setZombieMoveSpeed(getZombieMoveSpeed()/2);
             setZombieAttackSpeed(getZombieAttackDamage()/2);
-            resetslowpoints();
+            resetSlowPoints();
         }
     }
 }

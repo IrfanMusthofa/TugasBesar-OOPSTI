@@ -12,7 +12,7 @@ public class NewsPaperZombie extends Zombie {
         setZombieAttackDamage(100);
         setZombieAttackSpeed(1);
         setZombieMoveSpeed(2);
-
+        setCurrentMovePoints(20);
         setIsAquatic(false);
         setIsHidden(false);
         setIsSlowed(false);
@@ -22,13 +22,11 @@ public class NewsPaperZombie extends Zombie {
     @Override
     public int zombieCheck(Map map, int row, int col){
 
-
         // slow mechanism
-        if (getSlowpoints() >= 3){ // pengecekan apakah sudah waktunya unslow
+        if (getSlowPoints() >= 3){ // pengecekan apakah sudah waktunya unslow
             unslowZombie();
-        }
-        else if (getIsSlowed()){ // counter slow zombie
-            addslowpoints();
+        } else if (getIsSlowed()){ // counter slow zombie
+            addSlowPoints();
         }
 
         // tool check
@@ -43,14 +41,12 @@ public class NewsPaperZombie extends Zombie {
         // move mechanism
         if (map.getTile(row, col).getPlant() != null){ // mengecek ada tanaman atau tidak
             return 1;
-        } 
-        else {
+        } else {
             addCurrentMovePoints(getZombieMoveSpeed()); // movemodifier defaultnya 2 jadinya movetime setiap detik nambah 2
             if (getCurrentMovePoints() >= getMovePoint()){ // apakah sudah waktunya bergerak
                 resetCurrentMovePoints();
                 return 2;
-            }
-            else {
+            } else {
                 return 0;
             }
         }

@@ -1,6 +1,4 @@
 package com.pvzgame.Plant;
-// import com.pvzgame.Tile;
-// import com.pvzgame.Map;
 
 public class Peashooter extends Plant {
 
@@ -16,6 +14,7 @@ public class Peashooter extends Plant {
         setPlantAttackRange(-1);
         setPlantAttackDamage(25);
         setPlantAttackSpeed(4);
+        setPlantAttackPoints(4);
     }
     // public void plantAction(Map map, int row, int cols){ 
         

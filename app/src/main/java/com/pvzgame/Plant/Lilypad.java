@@ -14,6 +14,7 @@ public class Lilypad extends Plant {
         setPlantAttackRange(0);
         setPlantAttackDamage(0);
         setPlantAttackSpeed(0);
+        setPlantAttackPoints(0);
     }
 }
 

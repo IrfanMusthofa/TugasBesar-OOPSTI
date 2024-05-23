@@ -1,7 +1,7 @@
 package com.pvzgame.Plant;
 
-// import com.pvzgame.Map;
-// import com.pvzgame.Tile;
+import com.pvzgame.Map;
+import com.pvzgame.Tile;
 
 public class Squash extends Plant{
     // Immediately kills the zombie in the same tile or beside it (land)
@@ -19,6 +19,7 @@ public class Squash extends Plant{
         setPlantAttackRange(1);
         setPlantAttackDamage(5000);
         setPlantAttackSpeed(0);
+        setPlantAttackPoints(0);
     }
 
     // public void plantAction(Map map, int row, int cols){ 

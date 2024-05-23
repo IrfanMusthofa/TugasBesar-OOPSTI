@@ -11,7 +11,7 @@ public class DuckyTubeZombie extends Zombie {
         setZombieAttackDamage(100);
         setZombieAttackSpeed(1);
         setZombieMoveSpeed(2);
-
+        setCurrentMovePoints(20);
         setIsAquatic(true);
         setIsHidden(false);
         setIsSlowed(false);

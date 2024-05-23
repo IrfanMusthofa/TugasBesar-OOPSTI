@@ -16,7 +16,7 @@ public abstract class Zombie {
     private int zombieMoveSpeed; // berapa point yang ditambahkan setiap detik
     private int currentMovePoints; // berapa point yang sudah ditambahkan
     private final int movePoint = 20; // berapa point yang dibutuhkan untuk bergerak
-    private int slowpoints = 0; // berapa point yang sudah ditambahkan
+    private int slowPoints = 0; // berapa point yang sudah ditambahkan
 
     private Boolean isHidden;
     private Boolean isSlowed;
@@ -80,8 +80,8 @@ public abstract class Zombie {
         return hasTool;
     }
 
-    public int getSlowpoints() {
-        return slowpoints;
+    public int getSlowPoints() {
+        return slowPoints;
     }
 
     public static int getZombieCount() {
@@ -133,12 +133,12 @@ public abstract class Zombie {
         this.hasTool = hasTool;
     }
 
-    public void addslowpoints() {
-        this.slowpoints ++;
+    public void addSlowPoints() {
+        this.slowPoints++;
     }
 
-    public void resetslowpoints() {
-        this.slowpoints = 0;
+    public void resetSlowPoints() {
+        this.slowPoints = 0;
     }
 
     public static void incZombieCount() {
@@ -149,11 +149,10 @@ public abstract class Zombie {
     public int zombieCheck(Map map, int row, int col){
 
         // slow mechanism
-        if (getSlowpoints() >= 3){ // pengecekan apakah sudah waktunya unslow
+        if (getSlowPoints() >= 3){ // pengecekan apakah sudah waktunya unslow
             unslowZombie();
-        }
-        else if (getIsSlowed()){ // counter slow zombie
-            addslowpoints();
+        } else if (getIsSlowed()){ // counter slow zombie
+            addSlowPoints();
         }
 
         // tool check
@@ -184,7 +183,7 @@ public abstract class Zombie {
         isSlowed = true;
         this.zombieMoveSpeed /= 2;
         this.zombieAttackDamage /= 2;
-        this.slowpoints = 0;
+        this.slowPoints = 0;
     }
 
     public void unslowZombie() {
@@ -193,6 +192,10 @@ public abstract class Zombie {
         this.zombieAttackDamage *= 2;
     }
 
+    public void setCurrentMovePoints(int points) {
+        this.currentMovePoints = points;
+    }
+    
     public void addCurrentMovePoints(int points) {
        this.currentMovePoints += points;
     }

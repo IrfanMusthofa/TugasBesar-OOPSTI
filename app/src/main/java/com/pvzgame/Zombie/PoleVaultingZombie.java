@@ -12,7 +12,7 @@ public class PoleVaultingZombie extends Zombie {
         setZombieAttackDamage(100);
         setZombieAttackSpeed(2);
         setZombieMoveSpeed(4);
-
+        setCurrentMovePoints(20);
         setIsAquatic(false);
         setIsHidden(false);
         setIsSlowed(false);
@@ -23,11 +23,10 @@ public class PoleVaultingZombie extends Zombie {
     public int zombieCheck(Map map, int row, int col){
 
         // slow mechanism
-        if (getSlowpoints() >= 3){ // pengecekan apakah sudah waktunya unslow
+        if (getSlowPoints() >= 3){ // pengecekan apakah sudah waktunya unslow
             unslowZombie();
-        }
-        else if (getIsSlowed()){ // counter slow zombie
-            addslowpoints();
+        } else if (getIsSlowed()){ // counter slow zombie
+            addSlowPoints();
         }
 
         // tool check
@@ -44,18 +43,15 @@ public class PoleVaultingZombie extends Zombie {
                 setHasTool(false);
                 resetCurrentMovePoints();
                 return 3;
-            } 
-            else {
+            } else {
                 return 1;
             }
-        } 
-        else {
+        } else {
             addCurrentMovePoints(getZombieMoveSpeed()); // movemodifier defaultnya 2 jadinya movetime setiap detik nambah 2
             if (getCurrentMovePoints() >= getMovePoint()){ // apakah sudah waktunya bergerak
                 resetCurrentMovePoints();
                 return 2;
-            }
-            else {
+            } else {
                 return 0;
             }
         }

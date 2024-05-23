@@ -15,5 +15,6 @@ public class Kelp extends Plant {
         setPlantAttackRange(0);
         setPlantAttackDamage(5000);
         setPlantAttackSpeed(0);
+        setPlantAttackPoints(0);
     }
 }

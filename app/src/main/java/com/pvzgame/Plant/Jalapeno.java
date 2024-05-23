@@ -1,6 +1,5 @@
 package com.pvzgame.Plant;
-// import com.pvzgame.Tile;
-// import com.pvzgame.Map;
+
 public class Jalapeno extends Plant {
     // Immediately kills all zombies in the row (land)
     // Immediately sacrifices itself
@@ -17,6 +16,7 @@ public class Jalapeno extends Plant {
         setPlantAttackRange(-1);
         setPlantAttackDamage(5000);
         setPlantAttackSpeed(0);
+        setPlantAttackPoints(0);
     }
 
     //method

@@ -1,6 +1,5 @@
 package com.pvzgame.Plant;
 
-
 public class Wallnut extends Plant {
 
     // Constructor
@@ -15,5 +14,6 @@ public class Wallnut extends Plant {
         setPlantAttackRange(0);
         setPlantAttackDamage(0);
         setPlantAttackSpeed(0);
+        setPlantAttackPoints(0);
     }
 }

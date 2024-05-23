@@ -64,6 +64,10 @@ public abstract class Plant {
         return plantAttackSpeed;
     }
 
+    public int getPlantAttackPoints() {
+        return plantAttackPoints;
+    }
+
     public int getCurrentCol() {
         return currentCol;
     }
@@ -113,6 +117,10 @@ public abstract class Plant {
         this.plantAttackSpeed = plantAttackSpeed;
     }
 
+    public void setPlantAttackPoints(int plantAttackPoints) {
+        this.plantAttackPoints = plantAttackPoints;
+    }
+
     public void setCurrentCol(int currentCol) {
         this.currentCol = currentCol;
     }
@@ -125,12 +133,15 @@ public abstract class Plant {
         plantHealth -= damage;
     }
 
+    public void addPlantAttackPoints(int points) {
+        plantAttackPoints += points;
+    }
+
     public boolean timeToAttack() {
-        if (plantAttackPoints <= plantAttackSpeed) {
+        if (plantAttackPoints >= plantAttackSpeed) {
             plantAttackPoints = 0;
             return true;
-        }
-        else {
+        } else {
             plantAttackPoints++;
             return false;
         }

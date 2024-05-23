@@ -1,7 +1,5 @@
 package com.pvzgame.Plant;
-// import com.pvzgame.Tile;
-// import com.pvzgame.Map;
-// import com.pvzgame.Zombie.Zombie;
+
 public class Snowpea extends Plant {
 
     // Constructor
@@ -16,6 +14,7 @@ public class Snowpea extends Plant {
         setPlantAttackRange(-1);
         setPlantAttackDamage(25);
         setPlantAttackSpeed(4);
+        setPlantAttackPoints(4);
     }
 
     // public void plantAction(Map map, int row, int cols){ 
