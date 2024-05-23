@@ -15,6 +15,7 @@ public abstract class Plant {
     private int plantAttackRange;
     private int plantAttackDamage;
     private int plantAttackSpeed;
+    private int plantAttackPoints;
 
     private int currentCol;
     private int currentRow;
@@ -122,5 +123,16 @@ public abstract class Plant {
 
     public void plantAttacked(int damage) {
         plantHealth -= damage;
+    }
+
+    public boolean timeToAttack() {
+        if (plantAttackPoints <= plantAttackSpeed) {
+            plantAttackPoints = 0;
+            return true;
+        }
+        else {
+            plantAttackPoints++;
+            return false;
+        }
     }
 }

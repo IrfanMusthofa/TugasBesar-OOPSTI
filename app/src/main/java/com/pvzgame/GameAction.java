@@ -101,6 +101,63 @@ public class GameAction implements ZombieEnum {
 
 
     // ============= PLANT ACTION ==============
+    public void plantAction(Map map, int row, int col, Plant plant){
+
+        // jalapeno
+        if (plant.getPlantType() == 1){
+            Tile[][] tiles = map.getTiles();
+            for (int i=1;i<11;i++){
+                tiles[row][i].removeAllZombies();
+            }
+        }
+
+        // kelp
+        else if (plant.getPlantType() == 2){
+            if (map.getTile(row, col).getZombies() != null){
+                map.getTile(row, col).removeZombie(map.getTile(row, col).getZombies().get(0));
+                map.getTile(row, col).removePlant();
+            }
+        }
+
+        // peashooter / repeater
+        else if (plant.getPlantType() == 4 || plant.getPlantType() == 6){
+            if (plant.timeToAttack()){
+                for (int i = col;i<10;i++){
+                    if(map.getTile(row,i).getZombies()!=null){
+                        map.getTile(row,i).getZombies().get(0).zombieAttacked(plant.getPlantAttackDamage());
+                    }
+                }
+            }
+        }
+
+        // potato mine
+        else if (plant.getPlantType() == 5){
+            if (map.getTile(row, col).getZombies() != null){
+                map.getTile(row, col).removeAllZombies();
+                map.getTile(row, col).removePlant();
+            }
+        }
+
+        // snowpea
+        else if (plant.getPlantType() == 7){
+            if (plant.timeToAttack()){
+                for (int i = col;i<10;i++){
+                    if(map.getTile(row,i).getZombies()!=null){
+                        map.getTile(row,i).getZombies().get(0).zombieAttacked(plant.getPlantAttackDamage());
+                        map.getTile(row,i).getZombies().get(0).slowZombie();
+                    }
+                }
+            }
+        }
+
+        //squash
+        else if (plant.getPlantType() == 8){
+            if (map.getTile(row, col).getZombies() != null){
+                map.getTile(row, col).removeAllZombies();
+                map.getTile(row, col).removePlant();
+            }
+        }
+    }
 
     // Plant Spawner
     public void plant(int row, int col, Plant plant, Map map, Sun sun) {
