@@ -181,7 +181,6 @@ public class GameAction implements ZombieEnum {
             // add 25 sun every 3 seconds
             if (plant.timeToAttack() && Main.gameTime <= 100) {
                 sun.addSun(25);
-                System.out.println("nambah sun 25");
             }
         }
     }

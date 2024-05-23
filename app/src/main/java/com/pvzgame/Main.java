@@ -5,7 +5,6 @@ import java.util.Scanner;
 import java.util.InputMismatchException;
 
 import com.pvzgame.Plant.*; // Import All the Plant class
-import com.pvzgame.PlantFactory.*; // Import All the PeashooterFactory class
 import com.pvzgame.Zombie.*; // Import All the Zombie class
 import com.pvzgame.ZombieFactory.*; // Import All the ZombieFactory class
 
@@ -67,6 +66,7 @@ public class Main {
         System.out.println("Game Started!");
         gameTime = 0;
         gameRunning = true;
+        gameOver = false;
 
         // START OF timeThread: Sun Spawner, Zombie Spawner, GameOver Check, Win Check, gameTime increment
         Thread timeThread = new Thread(() -> {
