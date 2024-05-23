@@ -175,16 +175,17 @@ public class Main {
             }
         });
 
-        timeThread.start();
+      
         // END OF timeThread: Sun Spawner, Zombie Spawner, GameOver Check, Win Check, gameTime increment
 
-        Thread gameThread1 = new Thread(() -> {
+        Thread gameThread1 = new Thread(() -> { // row = 0
             while(gameRunning) {
                 try {
-                    for (int i = 0; i < 11; i++) {
+                    for (int i = 0; i < 11; i++) { // all col 
                         for (Zombie zombie : map.getTile(0, i).getZombies()) {
                             action.zombieAction(zombie, map, 0, i);
                         }
+                        action.plantAction(map, 0, i, map.getTile(0, i).getPlant());
                     }
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -193,9 +194,93 @@ public class Main {
             }
         });
 
+        Thread gameThread2 = new Thread(() -> { // row = 1
+            while(gameRunning) {
+                try {
+                    for (int i = 0; i < 11; i++) { // all col 
+                        for (Zombie zombie : map.getTile(1, i).getZombies()) {
+                            action.zombieAction(zombie, map, 1, i);
+                        }
+                        action.plantAction(map, 1, i, map.getTile(1, i).getPlant());
+                    }
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
+        Thread gameThread3 = new Thread(() -> { // row = 2
+            while(gameRunning) {
+                try {
+                    for (int i = 0; i < 11; i++) { // all col 
+                        for (Zombie zombie : map.getTile(2, i).getZombies()) {
+                            action.zombieAction(zombie, map, 2, i);
+                        }
+                        action.plantAction(map, 2, i, map.getTile(2, i).getPlant());
+                    }
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
+        Thread gameThread4 = new Thread(() -> { // row = 3
+            while(gameRunning) {
+                try {
+                    for (int i = 0; i < 11; i++) { // all col 
+                        for (Zombie zombie : map.getTile(3, i).getZombies()) {
+                            action.zombieAction(zombie, map, 3, i);
+                        }
+                        action.plantAction(map, 3, i, map.getTile(3, i).getPlant());
+                    }
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
+        Thread gameThread5 = new Thread(() -> { // row = 4
+            while(gameRunning) {
+                try {
+                    for (int i = 0; i < 11; i++) { // all col 
+                        for (Zombie zombie : map.getTile(4, i).getZombies()) {
+                            action.zombieAction(zombie, map, 4, i);
+                        }
+                        action.plantAction(map, 4, i, map.getTile(4, i).getPlant());
+                    }
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        Thread gameThread6 = new Thread(() -> { // row = 5
+            while(gameRunning) {
+                try {
+                    for (int i = 0; i < 11; i++) { // all col 
+                        for (Zombie zombie : map.getTile(5, i).getZombies()) {
+                            action.zombieAction(zombie, map, 5, i);
+                        }
+                        action.plantAction(map, 5, i, map.getTile(4, 5).getPlant());
+                    }
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        timeThread.start();
+        gameThread1.start();
+        gameThread2.start();
+        gameThread3.start();
+        gameThread4.start();
+        gameThread5.start();
+        
         // START OF mainThread : userInput
         while(gameRunning) {
             Boolean alreadyPrintMap = false;

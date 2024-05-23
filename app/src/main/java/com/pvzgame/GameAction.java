@@ -104,9 +104,9 @@ public class GameAction implements ZombieEnum {
 
         // jalapeno: remove entire zombie in a row
         if (plant.getPlantType() == 1) {
-            for (int i=1; i<10; i++){
-                if (map.getTile(i, col).getZombies() != null){
-                    map.getTile(i, col).removeAllZombies();
+            for (int i = 1; i < 10; i++){
+                if (map.getTile(row, i).getZombies() != null){
+                    map.getTile(row, i).removeAllZombies();
                 }
             }
             map.getTile(row, col).removePlant(); // remove jalapeno immediately
