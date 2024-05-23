@@ -132,9 +132,11 @@ public class GameAction implements ZombieEnum {
 
         // potato mine
         else if (plant.getPlantType() == 5){
-            if (map.getTile(row, col).getZombies() != null){
-                map.getTile(row, col).removeAllZombies();
-                map.getTile(row, col).removePlant();
+            if (plant.timeToAttack()){
+                if (map.getTile(row, col).getZombies() != null){
+                    map.getTile(row, col).removeAllZombies();
+                    map.getTile(row, col).removePlant();
+                }
             }
         }
 

@@ -1,14 +1,14 @@
 package com.pvzgame.Plant;
-import com.pvzgame.Tile;
-import com.pvzgame.Map;
+// import com.pvzgame.Tile;
+// import com.pvzgame.Map;
 public class PotatoMine extends Plant {
     // Immediately kills all zombies in the same tile (land)
     // Wait 10 seconds before it ready to kill
     // Immediately sacrifices itself after kills
     
     // Attributes
-    private Boolean isReadyToKill = false;
-    private final int readyToKillTime = 10;
+    // private Boolean isReadyToKill = false;
+    // private final int readyToKillTime = 10;
 
     // Constructor
     public PotatoMine(int birthTime) {
@@ -21,22 +21,22 @@ public class PotatoMine extends Plant {
         setPlantCooldown(10);
         setPlantAttackRange(0);
         setPlantAttackDamage(5000);
-        setPlantAttackSpeed(0);
+        setPlantAttackSpeed(20);
     }
 
-    // Getter
-    public Boolean getIsReadyToKill() {
-        return isReadyToKill;
-    }
+    // // Getter
+    // public Boolean getIsReadyToKill() {
+    //     return isReadyToKill;
+    // }
 
-    public int getReadyToKillTime() {
-        return readyToKillTime;
-    }
+    // public int getReadyToKillTime() {
+    //     return readyToKillTime;
+    // }
 
-    // Setter
-    public void setIsReadyToKill(Boolean isReadyToKill) {
-        this.isReadyToKill = isReadyToKill;
-    }
+    // // Setter
+    // public void setIsReadyToKill(Boolean isReadyToKill) {
+    //     this.isReadyToKill = isReadyToKill;
+    // }
 
     // //action
     // public void plantAttack(Map map){
