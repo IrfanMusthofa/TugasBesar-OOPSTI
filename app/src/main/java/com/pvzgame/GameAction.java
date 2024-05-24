@@ -12,15 +12,18 @@ public class GameAction implements ZombieEnum {
     // Attributes
     public ZombieEnum.landZombie[] landZombie = ZombieEnum.landZombie.values();
     public ZombieEnum.aquaticZombie[] aquaticZombie = ZombieEnum.aquaticZombie.values();
+    private int[] zombieCount = {0, 0, 0, 0, 0, 0};
 
     // ============= ZOMBIE ACTION ==============
     // Zombie Spawner
-    public void zombieSpawner(Tile tile) {
+    public void zombieSpawner(Tile tile, int row) {
 
-        // Max of total Zombie exist at a time is 10
-        if (Zombie.getZombieCount() >= 10) {
+        // limit zombie to 10 per row
+
+        if (zombieCount[row] >= 10) {
             return;
         }
+        zombieCount[row]++;
 
         // Randomly choose any type of zombie
         Random random = new Random();     
@@ -67,7 +70,6 @@ public class GameAction implements ZombieEnum {
                     break;
             }
         }
-        Zombie.incZombieCount();
     }
 
     public void zombieMove(Zombie zombie, Map map, int row, int col){ // Immediately normally move
@@ -110,6 +112,7 @@ public class GameAction implements ZombieEnum {
                 }
             }
             map.getTile(row, col).removePlant(); // remove jalapeno immediately
+            zombieCount[row] = 0; // reset zombie count
         }
 
         // kelp: remove front zombie only at the same tile
@@ -117,6 +120,7 @@ public class GameAction implements ZombieEnum {
             if (map.getTile(row, col).getZombies() != null){
                 map.getTile(row, col).removeZombie(map.getTile(row, col).getZombies().get(0)); 
                 map.getTile(row, col).removePlant();
+                zombieCount[row]--;
             }
         }
 
@@ -127,7 +131,10 @@ public class GameAction implements ZombieEnum {
                     if(map.getTile(row, i).getZombies() != null){
                         for (Zombie zombie : map.getTile(row, i).getZombies()){
                             zombie.zombieAttacked(plant.getPlantAttackDamage());
-                            
+                            if (zombie.getZombieHealth() <= 0){
+                                map.getTile(row, i).removeZombie(zombie);
+                                zombieCount[row]--;
+                            }
                         }
                         break; // front tile only
                     }
@@ -139,8 +146,10 @@ public class GameAction implements ZombieEnum {
         else if (plant.getPlantType() == 5){
             if (plant.timeToAttack()){
                 if (map.getTile(row, col).getZombies() != null){
+                    int temp = map.getTile(row, col).getZombies().size();
                     map.getTile(row, col).removeAllZombies();
                     map.getTile(row, col).removePlant();
+                    zombieCount[row] -= temp;
                 }
             }
         }
@@ -152,7 +161,11 @@ public class GameAction implements ZombieEnum {
                     if(map.getTile(row, i).getZombies() != null){
                         for (Zombie zombie : map.getTile(row, i).getZombies()) {
                             zombie.zombieAttacked(plant.getPlantAttackDamage());
-
+                            zombie.slowZombie();
+                            if (zombie.getZombieHealth() <= 0){
+                                map.getTile(row, i).removeZombie(zombie);
+                                zombieCount[row]--;
+                            }
                         }
                         break; // front tile only
                     }
@@ -163,16 +176,22 @@ public class GameAction implements ZombieEnum {
         // squash
         else if (plant.getPlantType() == 8){
             if (map.getTile(row, col-1).getZombies() != null){
+                int temp = map.getTile(row, col-1).getZombies().size();
                 map.getTile(row, col-1).removeAllZombies();
                 map.getTile(row, col).removePlant();
+                zombieCount[row] -= temp;
             }
             else if (map.getTile(row, col).getZombies() != null){
+                int temp = map.getTile(row, col).getZombies().size();
                 map.getTile(row, col).removeAllZombies();
                 map.getTile(row, col).removePlant();
+                zombieCount[row] -= temp;
             }
             else if (map.getTile(row, col+1).getZombies() != null){
+                int temp = map.getTile(row, col+1).getZombies().size();
                 map.getTile(row, col+1).removeAllZombies();
                 map.getTile(row, col).removePlant();
+                zombieCount[row] -= temp;
             }
         }
 

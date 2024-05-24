@@ -21,8 +21,6 @@ public abstract class Zombie {
     private Boolean isHidden;
     private Boolean isSlowed;
     private Boolean hasTool;
-
-    private static int zombieCount = 0;
     
     // Constructor
     // Will be implemented by subclasses
@@ -84,10 +82,6 @@ public abstract class Zombie {
         return slowPoints;
     }
 
-    public static int getZombieCount() {
-        return zombieCount;
-    }
-
     // Setters
     public void setZombieName(String zombieName) {
         this.zombieName = zombieName;
@@ -139,10 +133,6 @@ public abstract class Zombie {
 
     public void resetSlowPoints() {
         this.slowPoints = 0;
-    }
-
-    public static void incZombieCount() {
-        zombieCount++;
     }
 
     // methods

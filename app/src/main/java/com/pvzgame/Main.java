@@ -88,7 +88,7 @@ public class Main {
                     if (gameTime >= 20 && gameTime <= 160 && (gameTime - 20) % 3 == 0 && !timeHasReset) {
                         for (int i = 0; i < 6; i++) {
                             if (random.nextFloat() < 0.3) {
-                                action.zombieSpawner(map.getTile(i, 10));
+                                action.zombieSpawner(map.getTile(i, 10), i);
                             }
                         }
                     }
