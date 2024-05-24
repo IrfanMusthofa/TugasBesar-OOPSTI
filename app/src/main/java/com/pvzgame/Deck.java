@@ -96,6 +96,7 @@ public class Deck<T> {
             System.out.println(count + ". " + plant.create(0).getPlantName());
             count++;
         }
+        System.out.println("");
     }
 
     public Plant plantPlant(int index, int birthTime){

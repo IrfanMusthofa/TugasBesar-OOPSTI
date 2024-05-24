@@ -8,7 +8,7 @@ public class Menu {
         System.out.println("2. Help");
         System.out.println("3. Lihat Daftar Tanaman");
         System.out.println("4. Lihat Daftar Zombie");
-        System.out.println("5. Exit Game");
+        System.out.println("5. Exit Game\n");
     }
 
     public static void printPlantList() {
@@ -22,7 +22,7 @@ public class Menu {
         System.out.println("7. PotatoMine");
         System.out.println("8. Snowpea");
         System.out.println("9. Squash");
-        System.out.println("10. Repeater");
+        System.out.println("10. Repeater\n");
     }
 
     public static void printZombieList() {
@@ -36,6 +36,6 @@ public class Menu {
         System.out.println("7. PoleVaultingZombie");
         System.out.println("8. SnorkelZombie");
         System.out.println("9. NormalZombie");
-        System.out.println("10. ScreenDoorZombie");
+        System.out.println("10. ScreenDoorZombie\n");
     }
 }

@@ -68,11 +68,12 @@ public class Inventory {
     }
 
     public void printInventory() {
-        System.out.println("\nDaftar sisa Plant di Inventory: ");
+        System.out.println("\nDaftar Plant di Inventory: ");
         int count = 1;
         for (Plant plant : plantList.keySet()) {
             System.out.println(count + ". " + plant.getPlantName());
             count++;
         }
+        System.out.println("");
     }
 }

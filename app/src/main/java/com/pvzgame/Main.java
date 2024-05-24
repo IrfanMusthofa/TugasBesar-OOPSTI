@@ -437,6 +437,7 @@ public class Main {
                 scanner.nextLine();
             }
         }
+        deck.printDeck();
     }
 }
     
