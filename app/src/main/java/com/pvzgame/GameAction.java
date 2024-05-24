@@ -98,14 +98,16 @@ public class GameAction implements ZombieEnum {
         }
     }
 
-
     // ============= PLANT ACTION ==============
     public void plantAction(Map map, int row, int col, Plant plant, Sun sun){
 
         // jalapeno: remove entire zombie in a row
         if (plant.getPlantType() == 1) {
             for (int i = 1; i < 10; i++){
-                if (map.getTile(row, i).getZombies() != null){
+                if (!map.getTile(row, i).getZombies().isEmpty()){
+                    for (int j = 0; j < map.getTile(row, i).getZombies().size(); j++){
+                        Zombie.decZombieCount();
+                    }
                     map.getTile(row, i).removeAllZombies();
                 }
             }
@@ -114,8 +116,9 @@ public class GameAction implements ZombieEnum {
 
         // kelp: remove front zombie only at the same tile
         else if (plant.getPlantType() == 2) {
-            if (map.getTile(row, col).getZombies() != null){
+            if (!map.getTile(row, col).getZombies().isEmpty()){
                 map.getTile(row, col).removeZombie(map.getTile(row, col).getZombies().get(0)); 
+                Zombie.decZombieCount();
                 map.getTile(row, col).removePlant();
             }
         }
@@ -124,10 +127,13 @@ public class GameAction implements ZombieEnum {
         else if (plant.getPlantType() == 4 || plant.getPlantType() == 6){
             if (plant.timeToAttack()){
                 for (int i = col; i < 10; i++){
-                    if(map.getTile(row, i).getZombies() != null){
+                    if(!map.getTile(row, i).getZombies().isEmpty()){
                         for (Zombie zombie : map.getTile(row, i).getZombies()){
                             zombie.zombieAttacked(plant.getPlantAttackDamage());
-                            
+                            if (zombie.getZombieHealth() <= 0){
+                                map.getTile(row, i).removeZombie(zombie);
+                                Zombie.decZombieCount();
+                            }
                         }
                         break; // front tile only
                     }
@@ -138,7 +144,10 @@ public class GameAction implements ZombieEnum {
         // potato mine: remove all zombies at the same tile
         else if (plant.getPlantType() == 5){
             if (plant.timeToAttack()){
-                if (map.getTile(row, col).getZombies() != null){
+                if (!map.getTile(row, col).getZombies().isEmpty()){
+                    for (int j = 0; j < map.getTile(row, col).getZombies().size(); j++){
+                        Zombie.decZombieCount();
+                    }
                     map.getTile(row, col).removeAllZombies();
                     map.getTile(row, col).removePlant();
                 }
@@ -149,10 +158,13 @@ public class GameAction implements ZombieEnum {
         else if (plant.getPlantType() == 7){
             if (plant.timeToAttack()){
                 for (int i = col; i < 10; i++){
-                    if(map.getTile(row, i).getZombies() != null){
+                    if(!map.getTile(row, i).getZombies().isEmpty()){
                         for (Zombie zombie : map.getTile(row, i).getZombies()) {
                             zombie.zombieAttacked(plant.getPlantAttackDamage());
-
+                            if (zombie.getZombieHealth() <= 0){
+                                map.getTile(row, i).removeZombie(zombie);
+                                Zombie.decZombieCount();
+                            }
                         }
                         break; // front tile only
                     }
@@ -162,15 +174,24 @@ public class GameAction implements ZombieEnum {
 
         // squash
         else if (plant.getPlantType() == 8){
-            if (map.getTile(row, col-1).getZombies() != null){
+            if (!map.getTile(row, col-1).getZombies().isEmpty()){
+                for (int i = 0; i < map.getTile(row, col-1).getZombies().size(); i++){
+                    Zombie.decZombieCount();
+                }
                 map.getTile(row, col-1).removeAllZombies();
                 map.getTile(row, col).removePlant();
             }
-            else if (map.getTile(row, col).getZombies() != null){
+            else if (!map.getTile(row, col).getZombies().isEmpty()){
+                for (int i = 0; i < map.getTile(row, col).getZombies().size(); i++){
+                    Zombie.decZombieCount();
+                }
                 map.getTile(row, col).removeAllZombies();
                 map.getTile(row, col).removePlant();
             }
-            else if (map.getTile(row, col+1).getZombies() != null){
+            else if (!map.getTile(row, col+1).getZombies().isEmpty()){
+                for (int i = 0; i < map.getTile(row, col+1).getZombies().size(); i++){
+                    Zombie.decZombieCount();
+                }
                 map.getTile(row, col+1).removeAllZombies();
                 map.getTile(row, col).removePlant();
             }
@@ -189,6 +210,10 @@ public class GameAction implements ZombieEnum {
     public void plant(int row, int col, Plant plant, Map map, Sun sun) {
         try {   
             // Error Handling
+            if (Plant.getCooldown(plant.getPlantType()) > 0) { // Cooldown
+                throw new Exception("\n===== Tanaman belum siap untuk ditanam! =====");
+            }
+
             if (plant.getSunCost() > sun.getSunPoints()) { // Sun Point not enough
                 throw new Exception("\n===== Sun Point tidak cukup! =====");
             }
@@ -238,6 +263,9 @@ public class GameAction implements ZombieEnum {
                     }
                 }
             }
+
+            // Set cooldown
+            Plant.setCooldown(plant.getPlantType(), plant.getPlantCooldown()); 
 
             // Subtract Sun Point
             sun.subtractSun(plant.getSunCost());

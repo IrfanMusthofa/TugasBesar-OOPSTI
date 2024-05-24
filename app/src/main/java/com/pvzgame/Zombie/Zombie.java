@@ -145,6 +145,10 @@ public abstract class Zombie {
         zombieCount++;
     }
 
+    public static void decZombieCount() {
+        zombieCount--;
+    }
+
     // methods
     public int zombieCheck(Map map, int row, int col){
 

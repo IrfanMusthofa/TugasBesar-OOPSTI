@@ -21,13 +21,12 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("===== Welcome to Michael vs Lalapan! =====");
 
-        Menu.printMenu();
         int command = 0;
 
         // Game Menu Loop Condition
         while (true) {
             try {
-                
+                Menu.printMenu();
                 // Input command
                 command = Integer.parseInt(scanner.nextLine());
 
@@ -150,6 +149,11 @@ public class Main {
                             if(winCheck) gameRunning = false;
                         }
                     }
+
+                    for (int i = 0; i < 10; i++) { // reset plant cooldown
+                        Plant.decCooldown(i);
+                    }
+                    
                     // gameTime increment
                     if (!gameOver) {
                         Thread.sleep(1000); // 1s sleep
@@ -171,7 +175,7 @@ public class Main {
             if (gameOver) {
                 System.out.println("\n===== Michael kalah euy... =====\n===== Game Over! =====");
             } else {
-                System.out.println("\n===== Michael Tyson emang jago! =====\n===== Game Over! =====");
+                System.out.println("\n===== Michael Tyson emang jago! =====\n===== Game Over! =====\n2");
             }
         });
 

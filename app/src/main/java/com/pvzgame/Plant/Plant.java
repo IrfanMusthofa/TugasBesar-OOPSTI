@@ -2,6 +2,8 @@ package com.pvzgame.Plant;
 
 public abstract class Plant {
     
+    public static int[] cooldown = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
     // Attributes
     private String plantName;
     private int plantType;
@@ -76,6 +78,10 @@ public abstract class Plant {
         return currentRow;
     }
 
+    public static int getCooldown(int i) {
+        return cooldown[i];
+    }
+
     // Setters
     public void setPlantName(String plantName) {
         this.plantName = plantName;
@@ -137,6 +143,16 @@ public abstract class Plant {
         plantAttackPoints += points;
     }
 
+    public static void decCooldown(int i) { // based on type
+        if (cooldown[i] > 0) {
+            cooldown[i]--;
+        }
+    }
+
+    public static void setCooldown(int i, int cd) {
+        cooldown[i] = cd;
+    }
+    
     public boolean timeToAttack() {
         if (plantAttackPoints >= plantAttackSpeed) {
             plantAttackPoints = 0;
