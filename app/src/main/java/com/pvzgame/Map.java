@@ -102,4 +102,8 @@ public class Map {
             System.out.println(); // newLine
         }
     }
+
+    public static void resetMap() {
+        instance = null;
+    }
 }

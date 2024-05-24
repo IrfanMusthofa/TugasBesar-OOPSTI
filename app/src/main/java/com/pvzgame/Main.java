@@ -22,11 +22,11 @@ public class Main {
         System.out.println("===== Welcome to Michael vs Lalapan! =====");
 
         int command = 0;
-
+        Menu.printMenu();
         // Game Menu Loop Condition
         while (true) {
             try {
-                Menu.printMenu();
+                System.out.println("Masukkan command: ");
                 // Input command
                 command = Integer.parseInt(scanner.nextLine());
 
@@ -173,9 +173,13 @@ public class Main {
                 }
             }
             if (gameOver) {
-                System.out.println("\n===== Michael kalah euy... =====\n===== Game Over! =====");
+                System.out.println("\n===== Michael Tyson emang jago! Lu cupsss ahhh :V =====\n===== Game Over! =====");
+                gameReset();
+                Menu.printMenu();
             } else {
-                System.out.println("\n===== Michael Tyson emang jago! =====\n===== Game Over! =====\n2");
+                System.out.println("\n===== GG Jago bat dah! =====\n===== Game Over! =====\n");
+                gameReset();
+                Menu.printMenu();
             }
         });
 
@@ -330,14 +334,16 @@ public class Main {
                 System.out.println("(1)       : Print Map");
                 System.out.println("(2 p x y) : Tanam Plant ke-p dari Deck di baris x dan kolom y");
                 System.out.println("(3 x y)   : Cabut Plant di baris x dan kolom y\n");
-
+                if (!gameRunning) break;
                 int userInput = 0;
                 userInput = scanner.nextInt();
-
+                if (!gameRunning) break;
                 if (userInput == 1) {
+                    if (!gameRunning) break;
                     alreadyPrintMap = true;
                     map.printMap();
                 } else if (userInput == 2){
+                    if (!gameRunning) break;
                     try {
                         int p = scanner.nextInt();
                         int x = scanner.nextInt();
@@ -354,6 +360,7 @@ public class Main {
                     }
 
                 } else if (userInput == 3) {
+                    if (!gameRunning) break;
                     try {
                         int x = scanner.nextInt();
                         int y = scanner.nextInt();
@@ -372,8 +379,10 @@ public class Main {
             } catch (Exception e) {
                 System.out.println("\n===== Command tidak valid ======");
             } finally {
-                if (!alreadyPrintMap) map.printMap();
-                deck.printDeck();
+                if (gameRunning) {
+                    if (!alreadyPrintMap) map.printMap();
+                    deck.printDeck();
+                }
             }
         }
 
@@ -438,6 +447,17 @@ public class Main {
             }
         }
         deck.printDeck();
+    }
+
+    public static void gameReset() {
+        gameTime = 0;
+        gameRunning = false;
+        gameOver = false;
+        timeHasReset = false;
+        Zombie.resetZombieCount();
+        Plant.resetCooldown();
+        Sun.getInstance().setSunPoints(50);
+        Map.resetMap();
     }
 }
     

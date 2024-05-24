@@ -19,7 +19,7 @@ public class Menu {
         System.out.println("4. Lilypad");
         System.out.println("5. Sunflower");
         System.out.println("6. Wallnut");
-        System.out.println("7. PotatoMine");
+        System.out.println("7. Potato Mine");
         System.out.println("8. Snowpea");
         System.out.println("9. Squash");
         System.out.println("10. Repeater\n");
@@ -27,15 +27,15 @@ public class Menu {
 
     public static void printZombieList() {
         System.out.println("\nDaftar Zombie: ");
-        System.out.println("1. BucketHeadZombie");
-        System.out.println("2. ConeHeadZombie");
-        System.out.println("3. DolphinRiderZombie");
-        System.out.println("4. DuckyTubeZombie");
-        System.out.println("5. FootBallZombie");
-        System.out.println("6. NewsPaperZombie");
-        System.out.println("7. PoleVaultingZombie");
-        System.out.println("8. SnorkelZombie");
-        System.out.println("9. NormalZombie");
-        System.out.println("10. ScreenDoorZombie\n");
+        System.out.println("1. Bucket Head Zombie");
+        System.out.println("2. Cone Head Zombie");
+        System.out.println("3. Dolphin Rider Zombie");
+        System.out.println("4. Ducky Tube Zombie");
+        System.out.println("5. FootBall Zombie");
+        System.out.println("6. Newspaper Zombie");
+        System.out.println("7. Pole Vaulting Zombie");
+        System.out.println("8. Snorkel Zombie");
+        System.out.println("9. Normal Zombie");
+        System.out.println("10. Screen Door Zombie\n");
     }
 }

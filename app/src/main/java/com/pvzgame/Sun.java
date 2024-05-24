@@ -9,7 +9,7 @@ public class Sun {
 
     // Private Constructor
     private Sun() {
-    sunPoints = 50000;
+    sunPoints = 50;
     }
 
     // Singleton Instance and Thread Safety

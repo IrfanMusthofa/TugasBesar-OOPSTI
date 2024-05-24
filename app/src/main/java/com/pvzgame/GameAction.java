@@ -234,6 +234,7 @@ public class GameAction implements ZombieEnum {
          
             // Error Handling
             if (Plant.getCooldown(plant.getPlantType()-1) > 0) { // Cooldown
+                System.out.println("Tunggu cooldown: " + Plant.getCooldown(plant.getPlantType()-1) + " detik lagi!");
                 throw new Exception("\n===== Tanaman belum siap untuk ditanam! =====");
             }
 
@@ -247,13 +248,11 @@ public class GameAction implements ZombieEnum {
 
             // LAND PLANT
             if (!map.getTile(row, col).getWater()) {
-                System.out.println("here");
                 if (plant.getIsWaterType()) { 
                     throw new Exception("\n===== Tidak dapat menanam tanaman air di daratan! =====");
                 } else if (map.getTile(row, col).getPlant() != null) {
                     throw new Exception("\n===== Sudah ada tanaman di tile tersebut! =====");
                 } else if (map.getTile(row, col).getPlant() == null) {
-                    System.out.println("here2");
                     map.getTile(row, col).setPlant(plant);
                     System.out.println("\n ===== Menanam " + plant.getPlantName() + " di daratan! =====");
                 }
@@ -292,10 +291,12 @@ public class GameAction implements ZombieEnum {
             // Set cooldown
             Plant.setCooldown(plant.getPlantType()-1, plant.getPlantCooldown()); 
 
-            // Subtract Sun Point
+            // Subtract Sun Point and status
             sun.subtractSun(plant.getSunCost());
-            System.out.println("Plant: " + plant.getPlantName() + "Sun berkurang: " + plant.getSunCost());
+            System.out.println("\nPlant: " + plant.getPlantName());
+            System.out.println("Sun berkurang: " + plant.getSunCost());
             System.out.println("PlantTime: " + plant.getBirthTime());
+            System.out.println("Cooldown: " + Plant.getCooldown(plant.getPlantType()-1));
 
         } catch (Exception e) {
             System.out.println(e.getMessage());

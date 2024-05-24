@@ -162,4 +162,10 @@ public abstract class Plant {
             return false;
         }
     }
+
+    public static void resetCooldown() {
+        for (int i = 0; i < 10; i++) {
+            cooldown[i] = 0;
+        }
+    }
 }
