@@ -15,7 +15,7 @@ Player akan menang jika player berhasil bertahan melewati malam hari. Player aka
 
 ### Cara memulai permainan
 - Buka folder TUGASBESAR-OOPSTI 
-- Ketik "run.bat"(untuk Windows) atau ketik "./run.sh" (untuk Mac) di terminal
+- Ketik "./run.bat atau run.bat"(untuk Windows) atau ketik "./run.sh" (untuk Mac) di terminal
 
 
 ## Alur permainan
